@@ -378,10 +378,36 @@ require(['jquery'], function($) {
     // Move chooser into Conditions fieldset and sync data
     $(function() {
         setTimeout(function() {
-            // Find the Conditions fieldset content area
-            var conditionsFieldset = $('[data-index="conditions"] .admin__fieldset');
-            if (conditionsFieldset.length) {
-                $('#extrafee-choosers').appendTo(conditionsFieldset);
+            // Find the Conditions fieldset and append choosers inside it
+            var moved = false;
+            $('[data-index="conditions"]').each(function() {
+                var fieldset = $(this).find('.admin__fieldset');
+                if (fieldset.length) {
+                    $('#extrafee-choosers').appendTo(fieldset);
+                    moved = true;
+                    return false;
+                }
+            });
+            // Fallback: try finding by fieldset label
+            if (!moved) {
+                $('fieldset').each(function() {
+                    var legend = $(this).find('.fieldset-wrapper-title span, legend span');
+                    if (legend.length && legend.text().trim() === 'Conditions') {
+                        var content = $(this).find('.admin__fieldset, .fieldset-wrapper-content .admin__fieldset');
+                        if (content.length) {
+                            $('#extrafee-choosers').appendTo(content.first());
+                            moved = true;
+                            return false;
+                        }
+                    }
+                });
+            }
+            // Last resort: put it before Schedule
+            if (!moved) {
+                var scheduleFieldset = $('[data-index="schedule"]');
+                if (scheduleFieldset.length) {
+                    $('#extrafee-choosers').insertBefore(scheduleFieldset);
+                }
             }
 
             // Sync existing values from the rule data on page load
