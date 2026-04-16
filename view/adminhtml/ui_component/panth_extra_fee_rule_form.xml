@@ -374,21 +374,7 @@
             </settings>
         </field>
 
-        <field name="product_ids" formElement="input" sortOrder="110">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Product IDs</label>
-                <notice translate="true">Comma-separated product IDs. Leave empty to apply to all products.</notice>
-            </settings>
-        </field>
-
-        <field name="category_ids" formElement="input" sortOrder="120">
-            <settings>
-                <dataType>text</dataType>
-                <label translate="true">Category IDs</label>
-                <notice translate="true">Comma-separated category IDs. Leave empty to apply to all categories.</notice>
-            </settings>
-        </field>
+        <!-- product_ids and category_ids are handled by the AssignProducts browse popup block -->
     </fieldset>
 
     <!-- Schedule -->

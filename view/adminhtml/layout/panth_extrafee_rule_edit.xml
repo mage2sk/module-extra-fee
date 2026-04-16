@@ -4,6 +4,9 @@
     <body>
         <referenceContainer name="content">
             <uiComponent name="panth_extra_fee_rule_form"/>
+            <block class="Panth\ExtraFee\Block\Adminhtml\Rule\Edit\AssignProducts"
+                   name="panth.extra.fee.rule.assign.products"
+                   template="Panth_ExtraFee::rule/assign-products.phtml"/>
         </referenceContainer>
     </body>
 </page>
