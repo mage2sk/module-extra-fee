@@ -23,8 +23,6 @@ class Save extends Action implements HttpPostActionInterface
         'payment_methods',
         'customer_groups',
         'countries',
-        'regions',
-        'category_ids',
         'store_ids',
         'website_ids',
     ];

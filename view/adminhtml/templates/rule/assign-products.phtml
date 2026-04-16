@@ -375,17 +375,58 @@ require(['jquery'], function($) {
         this.showSelectedCategories();
     };
 
-    // Load selected items on page load
+    // Move chooser into Conditions fieldset and sync data
     $(function() {
         setTimeout(function() {
-            // Sync from UI Component hidden fields
-            var uiP = $('input[name="product_ids"]').not('#extrafee_product_ids');
-            var uiC = $('input[name="category_ids"]').not('#extrafee_category_ids');
-            if (uiP.length && uiP.val()) $('#extrafee_product_ids').val(uiP.val());
-            if (uiC.length && uiC.val()) $('#extrafee_category_ids').val(uiC.val());
-            EFC.showSelectedProducts();
-            EFC.showSelectedCategories();
-        }, 800);
+            // Find the Conditions fieldset content area
+            var conditionsFieldset = $('[data-index="conditions"] .admin__fieldset');
+            if (conditionsFieldset.length) {
+                $('#extrafee-choosers').appendTo(conditionsFieldset);
+            }
+
+            // Sync existing values from the rule data on page load
+            // The UI component form stores data via KO observables, check the page's data
+            var formData = window.panth_extra_fee_rule_data || {};
+
+            // Try to get values from the form provider
+            var checkProvider = setInterval(function() {
+                var provider = require.defined('uiRegistry') && require('uiRegistry');
+                if (!provider) return;
+
+                var source = provider.get('panth_extra_fee_rule_form.panth_extra_fee_rule_form_data_source');
+                if (source && source.data) {
+                    clearInterval(checkProvider);
+                    var data = source.data;
+                    if (data.product_ids) $('#extrafee_product_ids').val(data.product_ids);
+                    if (data.category_ids) $('#extrafee_category_ids').val(data.category_ids);
+                    EFC.showSelectedProducts();
+                    EFC.showSelectedCategories();
+                }
+            }, 300);
+
+            // Stop checking after 5 seconds
+            setTimeout(function() { clearInterval(checkProvider); }, 5000);
+
+            // Hook into form submission to include our field values
+            var form = $('[data-form-part="panth_extra_fee_rule_form"]').closest('form');
+            if (!form.length) {
+                // UI component forms submit via AJAX, hook into the save button
+                $('button[data-ui-id*="save"]').on('click', function() {
+                    // The data-form-part attribute should handle this,
+                    // but let's also set hidden inputs as backup
+                    var existingP = $('form input[name="product_ids"]').not('#extrafee_product_ids');
+                    var existingC = $('form input[name="category_ids"]').not('#extrafee_category_ids');
+                    if (!existingP.length) {
+                        $('<input>').attr({type:'hidden', name:'product_ids', 'data-form-part':'panth_extra_fee_rule_form'})
+                            .val($('#extrafee_product_ids').val()).appendTo('body');
+                    }
+                    if (!existingC.length) {
+                        $('<input>').attr({type:'hidden', name:'category_ids', 'data-form-part':'panth_extra_fee_rule_form'})
+                            .val($('#extrafee_category_ids').val()).appendTo('body');
+                    }
+                });
+            }
+        }, 500);
     });
 });
 </script>
