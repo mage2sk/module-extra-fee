@@ -1,0 +1,8 @@
+{
+  "extra-fee-label-color": "#374151",
+  "extra-fee-amount-color": "#0D9488",
+  "extra-fee-warning-bg": "#FEF3C7",
+  "extra-fee-warning-text": "#92400E",
+  "extra-fee-badge-bg": "#0D9488",
+  "extra-fee-badge-text": "#FFFFFF"
+}

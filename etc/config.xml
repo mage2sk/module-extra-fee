@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Extra Fee Module Default Configuration
+ *
+ * @category  Panth
+ * @package   Panth_ExtraFee
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <panth_extra_fee>
+            <general>
+                <enabled>1</enabled>
+                <fee_display_title>Additional Fees</fee_display_title>
+            </general>
+            <display>
+                <show_in_cart>1</show_in_cart>
+                <show_in_checkout>1</show_in_checkout>
+                <show_in_order_view>1</show_in_order_view>
+                <show_in_invoice>1</show_in_invoice>
+                <show_in_creditmemo>1</show_in_creditmemo>
+                <show_in_email>1</show_in_email>
+                <show_in_order_grid>0</show_in_order_grid>
+                <tax_display>1</tax_display>
+                <show_fee_breakdown>1</show_fee_breakdown>
+                <show_zero_fees>0</show_zero_fees>
+            </display>
+            <small_order>
+                <enabled>0</enabled>
+                <minimum_amount>50</minimum_amount>
+                <fee_type>fixed</fee_type>
+                <fee_amount>5</fee_amount>
+                <fee_label>Small Order Fee</fee_label>
+                <tax_class_id>0</tax_class_id>
+                <message>Orders below %1 will incur a %2 handling fee.</message>
+            </small_order>
+        </panth_extra_fee>
+    </default>
+</config>

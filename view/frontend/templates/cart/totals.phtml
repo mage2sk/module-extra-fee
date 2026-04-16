@@ -1,0 +1,165 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Cart extra fee totals template.
+ * Works on both Hyva and Luma themes (vanilla PHP, no jQuery/Alpine dependency).
+ *
+ * @var \Panth\ExtraFee\Block\Cart\ExtraFeeTotals $block
+ */
+
+if (!$block->canShow()) {
+    return;
+}
+
+$fees = $block->getExtraFees();
+if (empty($fees)) {
+    return;
+}
+
+$escaper = $block->getEscaper();
+$taxDisplay = $block->getTaxDisplay();
+$showBreakdown = $block->isShowFeeBreakdown();
+$displayTitle = $block->getFeeDisplayTitle();
+?>
+
+<?php if ($showBreakdown): ?>
+    <?php foreach ($fees as $fee): ?>
+        <?php if ($taxDisplay === 1): ?>
+            <tr class="totals panth-extra-fee-row">
+                <th class="mark" scope="row"
+                    style="color: var(--extra-fee-label-color, #374151);">
+                    <?= $escaper->escapeHtml($fee['label']) ?>
+                </th>
+                <td class="amount"
+                    style="color: var(--extra-fee-amount-color, #0D9488);">
+                    <span class="price">
+                        <?= /* @noEscape */ $block->formatPrice($fee['fee_amount']) ?>
+                    </span>
+                </td>
+            </tr>
+        <?php elseif ($taxDisplay === 2): ?>
+            <tr class="totals panth-extra-fee-row">
+                <th class="mark" scope="row"
+                    style="color: var(--extra-fee-label-color, #374151);">
+                    <?= $escaper->escapeHtml($fee['label']) ?>
+                    <span class="label"><?= $escaper->escapeHtml(__('Incl. Tax')->render()) ?></span>
+                </th>
+                <td class="amount"
+                    style="color: var(--extra-fee-amount-color, #0D9488);">
+                    <span class="price">
+                        <?= /* @noEscape */ $block->formatPrice($fee['fee_amount_incl_tax']) ?>
+                    </span>
+                </td>
+            </tr>
+        <?php else: ?>
+            <tr class="totals panth-extra-fee-row">
+                <th class="mark" scope="row"
+                    style="color: var(--extra-fee-label-color, #374151);">
+                    <?= $escaper->escapeHtml($fee['label']) ?>
+                    <span class="label"><?= $escaper->escapeHtml(__('Excl. Tax')->render()) ?></span>
+                </th>
+                <td class="amount"
+                    style="color: var(--extra-fee-amount-color, #0D9488);">
+                    <span class="price">
+                        <?= /* @noEscape */ $block->formatPrice($fee['fee_amount']) ?>
+                    </span>
+                </td>
+            </tr>
+            <tr class="totals panth-extra-fee-row">
+                <th class="mark" scope="row"
+                    style="color: var(--extra-fee-label-color, #374151);">
+                    <?= $escaper->escapeHtml($fee['label']) ?>
+                    <span class="label"><?= $escaper->escapeHtml(__('Incl. Tax')->render()) ?></span>
+                </th>
+                <td class="amount"
+                    style="color: var(--extra-fee-amount-color, #0D9488);">
+                    <span class="price">
+                        <?= /* @noEscape */ $block->formatPrice($fee['fee_amount_incl_tax']) ?>
+                    </span>
+                </td>
+            </tr>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php else: ?>
+    <?php
+    $totalExcl = 0.0;
+    $totalIncl = 0.0;
+    foreach ($fees as $fee) {
+        $totalExcl += $fee['fee_amount'];
+        $totalIncl += $fee['fee_amount_incl_tax'];
+    }
+    ?>
+    <?php if ($taxDisplay === 1): ?>
+        <tr class="totals panth-extra-fee-row">
+            <th class="mark" scope="row"
+                style="color: var(--extra-fee-label-color, #374151);">
+                <?= $escaper->escapeHtml(__($displayTitle)->render()) ?>
+            </th>
+            <td class="amount"
+                style="color: var(--extra-fee-amount-color, #0D9488);">
+                <span class="price">
+                    <?= /* @noEscape */ $block->formatPrice($totalExcl) ?>
+                </span>
+            </td>
+        </tr>
+    <?php elseif ($taxDisplay === 2): ?>
+        <tr class="totals panth-extra-fee-row">
+            <th class="mark" scope="row"
+                style="color: var(--extra-fee-label-color, #374151);">
+                <?= $escaper->escapeHtml(__($displayTitle)->render()) ?>
+                <span class="label"><?= $escaper->escapeHtml(__('Incl. Tax')->render()) ?></span>
+            </th>
+            <td class="amount"
+                style="color: var(--extra-fee-amount-color, #0D9488);">
+                <span class="price">
+                    <?= /* @noEscape */ $block->formatPrice($totalIncl) ?>
+                </span>
+            </td>
+        </tr>
+    <?php else: ?>
+        <tr class="totals panth-extra-fee-row">
+            <th class="mark" scope="row"
+                style="color: var(--extra-fee-label-color, #374151);">
+                <?= $escaper->escapeHtml(__($displayTitle)->render()) ?>
+                <span class="label"><?= $escaper->escapeHtml(__('Excl. Tax')->render()) ?></span>
+            </th>
+            <td class="amount"
+                style="color: var(--extra-fee-amount-color, #0D9488);">
+                <span class="price">
+                    <?= /* @noEscape */ $block->formatPrice($totalExcl) ?>
+                </span>
+            </td>
+        </tr>
+        <tr class="totals panth-extra-fee-row">
+            <th class="mark" scope="row"
+                style="color: var(--extra-fee-label-color, #374151);">
+                <?= $escaper->escapeHtml(__($displayTitle)->render()) ?>
+                <span class="label"><?= $escaper->escapeHtml(__('Incl. Tax')->render()) ?></span>
+            </th>
+            <td class="amount"
+                style="color: var(--extra-fee-amount-color, #0D9488);">
+                <span class="price">
+                    <?= /* @noEscape */ $block->formatPrice($totalIncl) ?>
+                </span>
+            </td>
+        </tr>
+    <?php endif; ?>
+<?php endif; ?>
+
+<?php if ($block->isSmallOrderFeeActive()): ?>
+    <tr class="totals panth-extra-fee-notice-row">
+        <td colspan="2" style="padding: 0;">
+            <div class="panth-extra-fee-notice"
+                 style="background: var(--extra-fee-warning-bg, #FEF3C7);
+                        color: var(--extra-fee-warning-text, #92400E);
+                        padding: 10px 14px;
+                        border-radius: 4px;
+                        font-size: 13px;
+                        margin: 8px 0;">
+                <?= $escaper->escapeHtml($block->getSmallOrderMessage()) ?>
+            </div>
+        </td>
+    </tr>
+<?php endif; ?>

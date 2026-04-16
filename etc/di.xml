@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Interface preferences -->
+    <preference for="Panth\ExtraFee\Api\Data\FeeRuleInterface"
+                type="Panth\ExtraFee\Model\FeeRule"/>
+    <preference for="Panth\ExtraFee\Api\FeeRuleRepositoryInterface"
+                type="Panth\ExtraFee\Model\FeeRuleRepository"/>
+
+    <!-- Register with Panth Core ThemeConfig -->
+    <type name="Panth\Core\ViewModel\ThemeConfig">
+        <arguments>
+            <argument name="registeredModules" xsi:type="array">
+                <item name="Panth_ExtraFee" xsi:type="string">Panth_ExtraFee</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- CLI Commands -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="panth_extrafee_install_sample_data" xsi:type="object">Panth\ExtraFee\Console\Command\InstallSampleDataCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Logger -->
+    <type name="Panth\ExtraFee\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Panth\ExtraFee\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">panth_extra_fee</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Panth\ExtraFee\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Grid Collections -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="panth_extra_fee_rule_listing_data_source" xsi:type="string">Panth\ExtraFee\Model\ResourceModel\FeeRule\Grid\Collection</item>
+                <item name="panth_extra_fee_order_listing_data_source" xsi:type="string">Panth\ExtraFee\Model\ResourceModel\OrderFee\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

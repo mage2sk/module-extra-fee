@@ -1,0 +1,101 @@
+{
+    "panth_extra_fee_rule": {
+        "column": {
+            "rule_id": true,
+            "name": true,
+            "description": true,
+            "is_active": true,
+            "sort_order": true,
+            "fee_type": true,
+            "fee_amount": true,
+            "fee_amount_percent": true,
+            "fee_label": true,
+            "apply_per": true,
+            "min_fee_amount": true,
+            "max_fee_amount": true,
+            "tax_class_id": true,
+            "is_refundable": true,
+            "include_in_subtotal": true,
+            "payment_methods": true,
+            "customer_groups": true,
+            "countries": true,
+            "regions": true,
+            "product_ids": true,
+            "product_skus": true,
+            "category_ids": true,
+            "min_order_subtotal": true,
+            "max_order_subtotal": true,
+            "min_order_qty": true,
+            "max_order_qty": true,
+            "date_from": true,
+            "date_to": true,
+            "store_ids": true,
+            "website_ids": true,
+            "stop_further_rules": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "PANTH_EXTRA_FEE_RULE_IS_ACTIVE": true,
+            "PANTH_EXTRA_FEE_RULE_SORT_ORDER": true,
+            "PANTH_EXTRA_FEE_RULE_DATE_FROM": true,
+            "PANTH_EXTRA_FEE_RULE_DATE_TO": true,
+            "PANTH_EXTRA_FEE_RULE_FEE_TYPE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "panth_extra_fee_order": {
+        "column": {
+            "entity_id": true,
+            "order_id": true,
+            "quote_id": true,
+            "rule_id": true,
+            "fee_label": true,
+            "fee_type": true,
+            "base_fee_amount": true,
+            "fee_amount": true,
+            "base_tax_amount": true,
+            "tax_amount": true,
+            "base_fee_amount_incl_tax": true,
+            "fee_amount_incl_tax": true,
+            "base_fee_refunded": true,
+            "fee_refunded": true,
+            "base_tax_refunded": true,
+            "tax_refunded": true,
+            "base_fee_invoiced": true,
+            "fee_invoiced": true,
+            "created_at": true
+        },
+        "index": {
+            "PANTH_EXTRA_FEE_ORDER_ORDER_ID": true,
+            "PANTH_EXTRA_FEE_ORDER_QUOTE_ID": true,
+            "PANTH_EXTRA_FEE_ORDER_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "panth_extra_fee_quote": {
+        "column": {
+            "entity_id": true,
+            "quote_id": true,
+            "rule_id": true,
+            "fee_label": true,
+            "fee_type": true,
+            "base_fee_amount": true,
+            "fee_amount": true,
+            "base_tax_amount": true,
+            "tax_amount": true,
+            "created_at": true
+        },
+        "index": {
+            "PANTH_EXTRA_FEE_QUOTE_QUOTE_ID": true,
+            "PANTH_EXTRA_FEE_QUOTE_RULE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

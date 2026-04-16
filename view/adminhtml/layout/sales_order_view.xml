@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Extra fee totals in Order Totals section -->
+        <referenceBlock name="order_totals">
+            <block class="Panth\ExtraFee\Block\Adminhtml\Sales\Order\Totals\ExtraFee"
+                   name="panth.extra.fee.admin.order.totals"/>
+        </referenceBlock>
+
+        <!-- Add "Extra Fee" column header to Items Ordered table -->
+        <referenceBlock name="order_items">
+            <arguments>
+                <argument name="columns" xsi:type="array">
+                    <item name="panth-extra-fee" xsi:type="string" translate="true">Extra Fee</item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Add "Extra Fee" column renderer to Items Ordered table -->
+        <referenceBlock name="default_order_items_renderer">
+            <arguments>
+                <argument name="columns" xsi:type="array">
+                    <item name="panth-extra-fee" xsi:type="string" translate="false">col-panth-extra-fee</item>
+                </argument>
+            </arguments>
+            <block class="Panth\ExtraFee\Block\Adminhtml\Sales\Order\Items\Column\ExtraFee"
+                   name="panth.extra.fee.item.column"
+                   template="Panth_ExtraFee::order/items/column/extra-fee.phtml"
+                   group="column"/>
+        </referenceBlock>
+    </body>
+</page>

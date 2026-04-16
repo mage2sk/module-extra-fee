@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">panth_extra_fee_rule_form.panth_extra_fee_rule_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Fee Rule</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Magento\Backend\Block\Widget\Button">
+                <url path="*/*/"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="delete" class="Panth\ExtraFee\Block\Adminhtml\Rule\Edit\DeleteButton"/>
+            <button name="save" class="Panth\ExtraFee\Block\Adminhtml\Rule\Edit\SaveButton"/>
+            <button name="save_and_continue" class="Panth\ExtraFee\Block\Adminhtml\Rule\Edit\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>panth_extra_fee_rule_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>panth_extra_fee_rule_form.panth_extra_fee_rule_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="panth_extra_fee_rule_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="panth_extrafee/rule/save"/>
+        </settings>
+        <dataProvider class="Panth\ExtraFee\Model\FeeRule\DataProvider" name="panth_extra_fee_rule_form_data_source">
+            <settings>
+                <requestFieldName>rule_id</requestFieldName>
+                <primaryFieldName>rule_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <!-- General Settings -->
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">General Settings</label>
+        </settings>
+
+        <field name="name" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="description" formElement="textarea" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Description</label>
+            </settings>
+        </field>
+
+        <field name="is_active" formElement="select" sortOrder="30">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Active</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="sort_order" formElement="input" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sort Order</label>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="stop_further_rules" formElement="select" sortOrder="50">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Stop Further Rules</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <!-- Fee Calculation -->
+    <fieldset name="fee_settings" sortOrder="20">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">Fee Calculation</label>
+        </settings>
+
+        <field name="fee_label" formElement="input" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Fee Label</label>
+                <notice translate="true">Label shown to customers on cart, checkout, and order.</notice>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="fee_type" formElement="select" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Fee Type</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Panth\ExtraFee\Model\Config\Source\FeeType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="fee_amount" formElement="input" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Fee Amount</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="fee_amount_percent" formElement="input" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Fee Amount Percent</label>
+                <notice translate="true">Only used when fee type is "combined".</notice>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="apply_per" formElement="select" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Apply Per</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Panth\ExtraFee\Model\Config\Source\ApplyPer"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="min_fee_amount" formElement="input" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Minimum Fee Amount</label>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="max_fee_amount" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Maximum Fee Amount</label>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="include_in_subtotal" formElement="select" sortOrder="80">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Include in Subtotal</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <!-- Tax Settings -->
+    <fieldset name="tax_settings" sortOrder="30">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Tax Settings</label>
+        </settings>
+
+        <field name="tax_class_id" formElement="select" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Tax Class</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Tax\Model\TaxClass\Source\Product"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="is_refundable" formElement="select" sortOrder="20">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Refundable</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <!-- Conditions -->
+    <fieldset name="conditions" sortOrder="40">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Conditions</label>
+        </settings>
+
+        <field name="store_ids" formElement="multiselect" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Store Views</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Store\Ui\Component\Listing\Column\Store\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="website_ids" formElement="multiselect" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Websites</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Store\Model\ResourceModel\Website\Collection"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="customer_groups" formElement="multiselect" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Customer Groups</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Panth\ExtraFee\Model\Config\Source\CustomerGroups"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="payment_methods" formElement="multiselect" sortOrder="40">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Payment Methods</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Panth\ExtraFee\Model\Config\Source\PaymentMethods"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="countries" formElement="multiselect" sortOrder="50">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Countries</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Panth\ExtraFee\Model\Config\Source\Countries"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+
+        <field name="regions" formElement="textarea" sortOrder="60">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Regions</label>
+                <notice translate="true">Comma-separated region IDs. Leave empty for all regions.</notice>
+            </settings>
+        </field>
+
+        <field name="min_order_subtotal" formElement="input" sortOrder="70">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Minimum Order Subtotal</label>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="max_order_subtotal" formElement="input" sortOrder="80">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Maximum Order Subtotal</label>
+                <validation>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="min_order_qty" formElement="input" sortOrder="90">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Minimum Order Qty</label>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="max_order_qty" formElement="input" sortOrder="100">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Maximum Order Qty</label>
+                <validation>
+                    <rule name="validate-digits" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+    </fieldset>
+
+    <!-- Product Conditions -->
+    <fieldset name="product_conditions" sortOrder="50">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Product Conditions</label>
+        </settings>
+
+        <field name="product_ids" formElement="textarea" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product IDs</label>
+                <notice translate="true">Comma-separated product IDs. Leave empty for all products.</notice>
+            </settings>
+        </field>
+
+        <field name="product_skus" formElement="textarea" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Product SKUs</label>
+                <notice translate="true">Comma-separated SKUs. Leave empty for all products.</notice>
+            </settings>
+        </field>
+
+        <field name="category_ids" formElement="textarea" sortOrder="30">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Category IDs</label>
+                <notice translate="true">Comma-separated category IDs. Leave empty for all categories.</notice>
+            </settings>
+        </field>
+    </fieldset>
+
+    <!-- Schedule -->
+    <fieldset name="schedule" sortOrder="60">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Schedule</label>
+        </settings>
+
+        <field name="date_from" formElement="date" sortOrder="10">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">From Date</label>
+            </settings>
+        </field>
+
+        <field name="date_to" formElement="date" sortOrder="20">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">To Date</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

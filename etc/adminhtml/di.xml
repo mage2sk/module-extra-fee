@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Admin dependency injection configuration
+ *
+ * @category  Panth
+ * @package   Panth_ExtraFee
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Admin-specific DI configuration for Panth_ExtraFee -->
+</config>

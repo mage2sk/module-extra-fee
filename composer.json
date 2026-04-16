@@ -1,0 +1,52 @@
+{
+    "name": "mage2kishan/module-extra-fee",
+    "description": "Panth Extra Fee — add configurable extra fees and surcharges to Magento 2 checkout based on payment method, customer group, country/region, products, categories, order amount, and more. Fixed, percentage, or combined fee calculation with full tax and refund support.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "keywords": [
+        "magento2",
+        "magento2-module",
+        "panth",
+        "extra-fee",
+        "surcharge",
+        "checkout-fee",
+        "payment-fee",
+        "order-fee"
+    ],
+    "homepage": "https://kishansavaliya.com",
+    "support": {
+        "email": "kishansavaliyakb@gmail.com",
+        "source": "https://kishansavaliya.com"
+    },
+    "authors": [
+        {
+            "name": "Kishan Savaliya",
+            "email": "kishansavaliyakb@gmail.com",
+            "homepage": "https://kishansavaliya.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~8.1.0||~8.2.0||~8.3.0||~8.4.0",
+        "magento/framework": "^103.0",
+        "magento/module-sales": "^103.0",
+        "magento/module-quote": "^101.2",
+        "magento/module-checkout": "^100.4",
+        "magento/module-catalog": "^104.0",
+        "magento/module-customer": "^103.0",
+        "magento/module-tax": "^100.4",
+        "magento/module-backend": "^102.0",
+        "magento/module-ui": "^101.2",
+        "magento/module-directory": "^100.4",
+        "mage2kishan/module-core": "^1.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Panth\\ExtraFee\\": ""
+        }
+    }
+}

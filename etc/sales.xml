@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/sales.xsd">
+    <section name="quote">
+        <group name="totals">
+            <item name="panth_extra_fee" instance="Panth\ExtraFee\Model\Total\Quote\ExtraFee" sort_order="450">
+                <renderer name="adminhtml" instance="Panth\ExtraFee\Block\Adminhtml\Sales\Order\Totals\ExtraFee"/>
+                <renderer name="frontend" instance="Panth\ExtraFee\Block\Sales\Order\Totals\ExtraFee"/>
+            </item>
+        </group>
+    </section>
+    <section name="order_invoice">
+        <group name="totals">
+            <item name="panth_extra_fee" instance="Panth\ExtraFee\Model\Total\Invoice\ExtraFee" sort_order="450"/>
+        </group>
+    </section>
+    <section name="order_creditmemo">
+        <group name="totals">
+            <item name="panth_extra_fee" instance="Panth\ExtraFee\Model\Total\Creditmemo\ExtraFee" sort_order="450"/>
+        </group>
+    </section>
+</config>

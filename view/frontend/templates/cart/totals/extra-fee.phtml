@@ -1,0 +1,13 @@
+<?php
+/**
+ * Extra fee line in Hyva cart totals.
+ * Rendered inside the Alpine x-for loop over total_segments.
+ * Only shows when segment.code starts with 'panth_extra_fee'.
+ */
+?>
+<template x-if="segment.code && segment.code.indexOf('panth_extra_fee') === 0 && segment.code !== 'panth_extra_fee_tax'">
+    <div :class="wrapperClass">
+        <div x-text="segment.title"></div>
+        <div x-text="hyva.formatPrice(segment.value)" class="justify-self-end"></div>
+    </div>
+</template>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">panth_extra_fee_order_listing.panth_extra_fee_order_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>panth_extra_fee_order_columns</spinner>
+        <deps>
+            <dep>panth_extra_fee_order_listing.panth_extra_fee_order_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="panth_extra_fee_order_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Panth_ExtraFee::view_order_fees</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="panth_extra_fee_order_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+        <exportButton name="export_button"/>
+    </listingToolbar>
+
+    <columns name="panth_extra_fee_order_columns">
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+
+        <column name="order_id" class="Panth\ExtraFee\Ui\Component\Listing\Column\OrderLink" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Order #</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+            </settings>
+        </column>
+
+        <column name="fee_label" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Fee Label</label>
+            </settings>
+        </column>
+
+        <column name="fee_type" sortOrder="40" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <filter>select</filter>
+                <options class="Panth\ExtraFee\Model\Config\Source\FeeType"/>
+                <dataType>select</dataType>
+                <label translate="true">Fee Type</label>
+            </settings>
+        </column>
+
+        <column name="base_fee_amount" sortOrder="50">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Fee Amount (Base)</label>
+            </settings>
+        </column>
+
+        <column name="fee_amount" sortOrder="60">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Fee Amount</label>
+            </settings>
+        </column>
+
+        <column name="base_tax_amount" sortOrder="70">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Tax (Base)</label>
+            </settings>
+        </column>
+
+        <column name="tax_amount" sortOrder="80">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Tax</label>
+            </settings>
+        </column>
+
+        <column name="base_fee_invoiced" sortOrder="90">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Fee Invoiced (Base)</label>
+            </settings>
+        </column>
+
+        <column name="base_fee_refunded" sortOrder="100">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Fee Refunded (Base)</label>
+            </settings>
+        </column>
+
+        <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date" sortOrder="110">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created At</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

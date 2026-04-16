@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <!-- Main rules table -->
+    <table name="panth_extra_fee_rule" resource="default" engine="innodb" comment="Panth Extra Fee Rules">
+        <column xsi:type="int" name="rule_id" unsigned="true" nullable="false" identity="true" comment="Rule ID"/>
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Rule Display Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Admin Description"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="varchar" name="fee_type" length="20" nullable="false" default="fixed" comment="Fee Type"/>
+        <column xsi:type="decimal" name="fee_amount" precision="20" scale="4" nullable="false" default="0" comment="Fee Amount"/>
+        <column xsi:type="decimal" name="fee_amount_percent" precision="12" scale="4" nullable="false" default="0" comment="Fee Amount Percent"/>
+        <column xsi:type="varchar" name="fee_label" length="255" nullable="false" comment="Fee Label"/>
+        <column xsi:type="varchar" name="apply_per" length="20" nullable="false" default="order" comment="Apply Per"/>
+        <column xsi:type="decimal" name="min_fee_amount" precision="20" scale="4" nullable="true" comment="Minimum Fee Amount"/>
+        <column xsi:type="decimal" name="max_fee_amount" precision="20" scale="4" nullable="true" comment="Maximum Fee Cap"/>
+        <column xsi:type="int" name="tax_class_id" unsigned="true" nullable="false" default="0" comment="Tax Class ID"/>
+        <column xsi:type="smallint" name="is_refundable" unsigned="true" nullable="false" default="1" comment="Is Refundable"/>
+        <column xsi:type="smallint" name="include_in_subtotal" unsigned="true" nullable="false" default="0" comment="Include In Subtotal"/>
+        <column xsi:type="text" name="payment_methods" nullable="true" comment="Payment Methods"/>
+        <column xsi:type="text" name="customer_groups" nullable="true" comment="Customer Groups"/>
+        <column xsi:type="text" name="countries" nullable="true" comment="Countries"/>
+        <column xsi:type="text" name="regions" nullable="true" comment="Regions"/>
+        <column xsi:type="text" name="product_ids" nullable="true" comment="Product IDs"/>
+        <column xsi:type="text" name="product_skus" nullable="true" comment="Product SKUs"/>
+        <column xsi:type="text" name="category_ids" nullable="true" comment="Category IDs"/>
+        <column xsi:type="decimal" name="min_order_subtotal" precision="20" scale="4" nullable="true" comment="Min Order Subtotal"/>
+        <column xsi:type="decimal" name="max_order_subtotal" precision="20" scale="4" nullable="true" comment="Max Order Subtotal"/>
+        <column xsi:type="int" name="min_order_qty" unsigned="true" nullable="true" comment="Min Order Qty"/>
+        <column xsi:type="int" name="max_order_qty" unsigned="true" nullable="true" comment="Max Order Qty"/>
+        <column xsi:type="date" name="date_from" nullable="true" comment="Date From"/>
+        <column xsi:type="date" name="date_to" nullable="true" comment="Date To"/>
+        <column xsi:type="text" name="store_ids" nullable="true" comment="Store IDs"/>
+        <column xsi:type="text" name="website_ids" nullable="true" comment="Website IDs"/>
+        <column xsi:type="smallint" name="stop_further_rules" unsigned="true" nullable="false" default="0" comment="Stop Further Rules"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+        <index referenceId="PANTH_EXTRA_FEE_RULE_IS_ACTIVE" indexType="btree">
+            <column name="is_active"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_RULE_SORT_ORDER" indexType="btree">
+            <column name="sort_order"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_RULE_DATE_FROM" indexType="btree">
+            <column name="date_from"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_RULE_DATE_TO" indexType="btree">
+            <column name="date_to"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_RULE_FEE_TYPE" indexType="btree">
+            <column name="fee_type"/>
+        </index>
+    </table>
+
+    <!-- Fees applied to orders -->
+    <table name="panth_extra_fee_order" resource="default" engine="innodb" comment="Panth Extra Fee Order">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="order_id" unsigned="true" nullable="false" comment="Order ID"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="true" comment="Quote ID"/>
+        <column xsi:type="int" name="rule_id" unsigned="true" nullable="true" comment="Rule ID"/>
+        <column xsi:type="varchar" name="fee_label" length="255" nullable="false" comment="Fee Label"/>
+        <column xsi:type="varchar" name="fee_type" length="20" nullable="false" comment="Fee Type"/>
+        <column xsi:type="decimal" name="base_fee_amount" precision="20" scale="4" nullable="false" default="0" comment="Base Fee Amount"/>
+        <column xsi:type="decimal" name="fee_amount" precision="20" scale="4" nullable="false" default="0" comment="Fee Amount"/>
+        <column xsi:type="decimal" name="base_tax_amount" precision="20" scale="4" nullable="false" default="0" comment="Base Tax Amount"/>
+        <column xsi:type="decimal" name="tax_amount" precision="20" scale="4" nullable="false" default="0" comment="Tax Amount"/>
+        <column xsi:type="decimal" name="base_fee_amount_incl_tax" precision="20" scale="4" nullable="false" default="0" comment="Base Fee Amount Incl Tax"/>
+        <column xsi:type="decimal" name="fee_amount_incl_tax" precision="20" scale="4" nullable="false" default="0" comment="Fee Amount Incl Tax"/>
+        <column xsi:type="decimal" name="base_fee_refunded" precision="20" scale="4" nullable="false" default="0" comment="Base Fee Refunded"/>
+        <column xsi:type="decimal" name="fee_refunded" precision="20" scale="4" nullable="false" default="0" comment="Fee Refunded"/>
+        <column xsi:type="decimal" name="base_tax_refunded" precision="20" scale="4" nullable="false" default="0" comment="Base Tax Refunded"/>
+        <column xsi:type="decimal" name="tax_refunded" precision="20" scale="4" nullable="false" default="0" comment="Tax Refunded"/>
+        <column xsi:type="decimal" name="base_fee_invoiced" precision="20" scale="4" nullable="false" default="0" comment="Base Fee Invoiced"/>
+        <column xsi:type="decimal" name="fee_invoiced" precision="20" scale="4" nullable="false" default="0" comment="Fee Invoiced"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="PANTH_EXTRA_FEE_ORDER_ORDER_ID" indexType="btree">
+            <column name="order_id"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_ORDER_QUOTE_ID" indexType="btree">
+            <column name="quote_id"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_ORDER_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+    </table>
+
+    <!-- Fees on quotes (cart) -->
+    <table name="panth_extra_fee_quote" resource="default" engine="innodb" comment="Panth Extra Fee Quote">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="int" name="quote_id" unsigned="true" nullable="false" comment="Quote ID"/>
+        <column xsi:type="int" name="rule_id" unsigned="true" nullable="false" comment="Rule ID"/>
+        <column xsi:type="varchar" name="fee_label" length="255" nullable="false" comment="Fee Label"/>
+        <column xsi:type="varchar" name="fee_type" length="20" nullable="false" comment="Fee Type"/>
+        <column xsi:type="decimal" name="base_fee_amount" precision="20" scale="4" nullable="false" default="0" comment="Base Fee Amount"/>
+        <column xsi:type="decimal" name="fee_amount" precision="20" scale="4" nullable="false" default="0" comment="Fee Amount"/>
+        <column xsi:type="decimal" name="base_tax_amount" precision="20" scale="4" nullable="false" default="0" comment="Base Tax Amount"/>
+        <column xsi:type="decimal" name="tax_amount" precision="20" scale="4" nullable="false" default="0" comment="Tax Amount"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="PANTH_EXTRA_FEE_QUOTE_QUOTE_ID" indexType="btree">
+            <column name="quote_id"/>
+        </index>
+        <index referenceId="PANTH_EXTRA_FEE_QUOTE_RULE_ID" indexType="btree">
+            <column name="rule_id"/>
+        </index>
+    </table>
+</schema>

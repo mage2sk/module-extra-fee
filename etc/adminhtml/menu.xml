@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Extra Fee Module Admin Menu
+ *
+ * @category  Panth
+ * @package   Panth_ExtraFee
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Panth_ExtraFee::group"
+             title="Extra Fee"
+             module="Panth_ExtraFee"
+             sortOrder="45"
+             parent="Panth_Core::panth_extensions"
+             resource="Panth_ExtraFee::extra_fee"/>
+        <add id="Panth_ExtraFee::manage_rules"
+             title="Fee Rules"
+             module="Panth_ExtraFee"
+             sortOrder="10"
+             parent="Panth_ExtraFee::group"
+             action="panth_extrafee/rule/index"
+             resource="Panth_ExtraFee::manage_rules"/>
+        <add id="Panth_ExtraFee::order_fees"
+             title="Order Fees"
+             module="Panth_ExtraFee"
+             sortOrder="20"
+             parent="Panth_ExtraFee::group"
+             action="panth_extrafee/orderfee/index"
+             resource="Panth_ExtraFee::view_order_fees"/>
+        <add id="Panth_ExtraFee::settings"
+             title="Configuration"
+             module="Panth_ExtraFee"
+             sortOrder="30"
+             parent="Panth_ExtraFee::group"
+             action="adminhtml/system_config/edit/section/panth_extra_fee"
+             resource="Panth_ExtraFee::config"/>
+    </menu>
+</config>

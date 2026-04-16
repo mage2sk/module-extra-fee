@@ -1,0 +1,13 @@
+<?php
+/**
+ * Extra fee column for order items grid.
+ *
+ * @var \Panth\ExtraFee\Block\Adminhtml\Sales\Order\Items\Column\ExtraFee $block
+ */
+$formatted = $block->getFormattedItemExtraFee();
+?>
+<?php if ($formatted): ?>
+    <span style="font-weight:600; color:#0D9488"><?= $block->escapeHtml($formatted) ?></span>
+<?php else: ?>
+    <span style="color:#999">&mdash;</span>
+<?php endif; ?>
