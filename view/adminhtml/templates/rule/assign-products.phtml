@@ -156,11 +156,11 @@ require(['jquery'], function($) {
             list.forEach(function(p) {
                 var sel = selIds.indexOf(String(p.id)) !== -1;
                 h += '<tr class="data-row' + (sel ? ' ef-row-selected' : '') + '">';
-                h += '<td style="padding:5px 8px;"><input type="checkbox" class="ef-pcb" value="' + p.id + '" data-name="' + this._escHtml(p.name) + '"' + (sel ? ' checked' : '') + ' onchange="EFC._updateProductPills()"/></td>';
+                h += '<td style="padding:5px 8px;"><input type="checkbox" class="ef-pcb" value="' + p.id + '" data-name="' + EFC._escHtml(p.name) + '"' + (sel ? ' checked' : '') + ' onchange="EFC._updateProductPills()"/></td>';
                 h += '<td style="padding:5px 8px; font-size:12px; color:#999;">' + p.id + '</td>';
-                h += '<td style="padding:5px 8px; font-size:12px;">' + this._escHtml(p.name) + '</td>';
-                h += '<td style="padding:5px 8px; font-size:12px; color:#888;">' + this._escHtml(p.sku) + '</td>';
-                h += '<td style="padding:5px 8px; font-size:11px;">' + this._escHtml(p.type) + '</td>';
+                h += '<td style="padding:5px 8px; font-size:12px;">' + EFC._escHtml(p.name) + '</td>';
+                h += '<td style="padding:5px 8px; font-size:12px; color:#888;">' + EFC._escHtml(p.sku) + '</td>';
+                h += '<td style="padding:5px 8px; font-size:11px;">' + EFC._escHtml(p.type) + '</td>';
                 h += '<td style="padding:5px 8px; font-size:12px;">$' + parseFloat(p.price).toFixed(2) + '</td></tr>';
             });
             h += '</tbody></table>';
