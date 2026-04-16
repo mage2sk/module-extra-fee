@@ -43,7 +43,7 @@ class ExtraFee extends AbstractTotal
 
         $storeId = (int)$quote->getStoreId();
 
-        if (!$this->helper->isEnabled($storeId)) {
+        if (!$this->helper->shouldApplyFees($storeId)) {
             return $this;
         }
 
@@ -80,7 +80,7 @@ class ExtraFee extends AbstractTotal
     {
         $storeId = (int)$quote->getStoreId();
 
-        if (!$this->helper->isEnabled($storeId)) {
+        if (!$this->helper->shouldApplyFees($storeId)) {
             return [];
         }
 

@@ -14,6 +14,7 @@
             <general>
                 <enabled>1</enabled>
                 <fee_display_title>Additional Fees</fee_display_title>
+                <apply_to_admin_orders>0</apply_to_admin_orders>
             </general>
             <display>
                 <show_in_cart>1</show_in_cart>

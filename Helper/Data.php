@@ -6,22 +6,43 @@ namespace Panth\ExtraFee\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\App\State;
 use Magento\Store\Model\ScopeInterface;
 
-/**
- * Extra Fee module configuration helper.
- */
 class Data extends AbstractHelper
 {
     private const XML_PATH = 'panth_extra_fee/';
 
-    /**
-     * @param Context $context
-     */
     public function __construct(
-        Context $context
+        Context $context,
+        private readonly State $appState
     ) {
         parent::__construct($context);
+    }
+
+    public function isApplyToAdminOrders(?int $storeId = null): bool
+    {
+        return (bool) $this->getConfigValue('general/apply_to_admin_orders', $storeId);
+    }
+
+    public function isAdminArea(): bool
+    {
+        try {
+            return $this->appState->getAreaCode() === \Magento\Framework\App\Area::AREA_ADMINHTML;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function shouldApplyFees(?int $storeId = null): bool
+    {
+        if (!$this->isEnabled($storeId)) {
+            return false;
+        }
+        if ($this->isAdminArea() && !$this->isApplyToAdminOrders($storeId)) {
+            return false;
+        }
+        return true;
     }
 
     /**

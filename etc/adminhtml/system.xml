@@ -29,6 +29,12 @@
                     <comment>Enable or disable the extra fee functionality.</comment>
                 </field>
 
+                <field id="apply_to_admin_orders" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply Fees to Admin Orders</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Apply extra fees when admin creates orders from backend. Set to No to skip fees for admin-created orders.</comment>
+                </field>
+
                 <field id="fee_display_title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Fee Display Title</label>
                     <comment>Heading shown above the fee breakdown in cart and checkout.</comment>
