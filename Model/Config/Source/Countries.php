@@ -9,24 +9,15 @@ use Magento\Framework\Data\OptionSourceInterface;
 
 class Countries implements OptionSourceInterface
 {
-    /**
-     * @var Country
-     */
-    private Country $countrySource;
-
-    /**
-     * @param Country $countrySource
-     */
-    public function __construct(Country $countrySource)
-    {
-        $this->countrySource = $countrySource;
+    public function __construct(
+        private readonly Country $countrySource
+    ) {
     }
 
-    /**
-     * @inheritdoc
-     */
     public function toOptionArray(): array
     {
-        return $this->countrySource->toOptionArray();
+        $options = $this->countrySource->toOptionArray(true);
+        // Remove the empty "Please select" option - not needed for multiselect
+        return array_filter($options, fn($opt) => !empty($opt['value']));
     }
 }
