@@ -2,7 +2,7 @@
     "name": "mage2kishan/module-extra-fee",
     "description": "Panth Extra Fee — add configurable extra fees and surcharges to Magento 2 checkout based on payment method, customer group, country/region, products, categories, order amount, and more. Fixed, percentage, or combined fee calculation with full tax and refund support.",
     "type": "magento2-module",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "proprietary",
     "keywords": [
         "magento2",
