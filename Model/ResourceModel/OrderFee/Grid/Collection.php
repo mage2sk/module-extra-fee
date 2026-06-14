@@ -52,8 +52,8 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
         ManagerInterface $eventManager,
         string $mainTable = 'panth_extra_fee_order',
         string $resourceModel = \Panth\ExtraFee\Model\ResourceModel\OrderFee::class,
-        AdapterInterface $connection = null,
-        AbstractDb $resource = null
+        ?AdapterInterface $connection = null,
+        ?AbstractDb $resource = null
     ) {
         parent::__construct(
             $entityFactory,
@@ -117,7 +117,7 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     /**
      * @inheritdoc
      */
-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null): self
+    public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null): self
     {
         return $this;
     }
@@ -141,7 +141,7 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
     /**
      * @inheritdoc
      */
-    public function setItems(array $items = null): self
+    public function setItems(?array $items = null): self
     {
         return $this;
     }
