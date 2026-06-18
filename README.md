@@ -1,79 +1,49 @@
 <!-- SEO Meta -->
 <!--
-  Title: Panth Extra Fee — Configurable Extra Fees & Surcharges for Magento 2 Checkout
-  Description: Add extra fees and surcharges to Magento 2 checkout based on payment method, customer group, country, products, categories, order amount, and more. Fixed, percentage, or combined calculation with tax, refund, invoice support. Hyva + Luma compatible.
-  Keywords: magento 2 extra fee, magento checkout fee, magento surcharge, magento payment fee, magento order fee, magento extra charges, magento 2 additional fee, magento handling fee, magento small order fee
+  Title: Magento 2 Extra Fee Extension: Configurable Checkout Fees and Surcharges | Hyva + Luma | Panth Infotech
+  Description: Add configurable extra fees and surcharges to Magento 2 checkout based on payment method, customer group, country, products, categories, and order amount. Fixed, percentage, or combined calculation with full tax, invoice, and refund support. Hyva + Luma compatible. Built by Top Rated Plus Magento developer Kishan Savaliya.
+  Keywords: magento 2 extra fee, magento 2 checkout fee, magento 2 surcharge, magento 2 payment method fee, magento 2 order fee, magento 2 handling fee, magento 2 small order fee, magento 2 additional fee, magento 2 extra charges, hyva extra fee, luma checkout fee, magento 2 extra fee extension
   Author: Kishan Savaliya (Panth Infotech)
+  Canonical: https://kishansavaliya.com/magento-2-extra-fee.html
 -->
 
-# Panth Extra Fee — Configurable Extra Fees & Surcharges for Magento 2
+# Magento 2 Extra Fee Extension: Configurable Checkout Fees and Surcharges (Hyva + Luma)
 
 [![Magento 2.4.4 - 2.4.8](https://img.shields.io/badge/Magento-2.4.4%20--%202.4.8-orange?logo=magento&logoColor=white)](https://magento.com)
 [![PHP 8.1 - 8.4](https://img.shields.io/badge/PHP-8.1%20--%208.4-blue?logo=php&logoColor=white)](https://php.net)
-[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red)]()
+[![Hyva + Luma](https://img.shields.io/badge/Themes-Hyva%20%2B%20Luma-14b8a6)](https://www.hyva.io)
+[![Live Demo & Details](https://img.shields.io/badge/Live%20Demo%20%26%20Details-magento--2--extra--fee-0D9488?style=flat)](https://kishansavaliya.com/magento-2-extra-fee.html)
 [![Packagist](https://img.shields.io/badge/Packagist-mage2kishan%2Fmodule--extra--fee-orange?logo=packagist&logoColor=white)](https://packagist.org/packages/mage2kishan/module-extra-fee)
 [![Upwork Top Rated Plus](https://img.shields.io/badge/Upwork-Top%20Rated%20Plus-14a800?logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~016dd1767321100e21)
-[![Panth Infotech Agency](https://img.shields.io/badge/Agency-Panth%20Infotech-14a800?logo=upwork&logoColor=white)](https://www.upwork.com/agencies/1881421506131960778/)
 [![Website](https://img.shields.io/badge/Website-kishansavaliya.com-0D9488)](https://kishansavaliya.com)
-[![Get a Quote](https://img.shields.io/badge/Get%20a%20Quote-Free%20Estimate-DC2626)](https://kishansavaliya.com/get-quote)
 
-> **Add configurable extra fees and surcharges to your Magento 2 checkout** — payment method fees, small order fees, customer group surcharges, country-based fees, product-specific handling charges, and more. Each fee shows as its own line item in cart, checkout, order view, invoices, credit memos, and emails. Full tax and refund support built in.
+> **Add extra fees and surcharges to Magento 2 checkout.** Panth Extra Fee lets you create unlimited fee rules with conditions on payment method, customer group, country, product, category, order amount, and more. Each fee shows as its own line item in cart, checkout, orders, invoices, credit memos, and emails. Full tax and refund support is built in.
 
-Stop losing margin on small orders, COD payments, and international shipping. **Panth Extra Fee** gives store owners complete control over additional charges with a powerful rule engine, 11 condition types, 4 calculation methods, and a clean admin UI with product/category browse popups.
+**Product page:** [kishansavaliya.com/magento-2-extra-fee.html](https://kishansavaliya.com/magento-2-extra-fee.html)
 
-## Preview
+---
 
-### Fee Rules Management
+## Quick Answer
 
-![Fee Rules Grid](docs/fee-rules-grid.png)
+**What is Panth Extra Fee?** It is a Magento 2 extra fee extension that adds configurable surcharges to checkout using a rule engine. You can charge a flat fee, a percentage, or a combination, based on payment method, customer group, country, subtotal range, product, or category.
 
-*Manage all your fee rules from a single grid — filter by type, status, amount, and more.*
+**What does it add to my store?**
 
-### Fee Rule Editor with Product & Category Browse
+- **Unlimited fee rules** with 11 condition types and 4 calculation methods.
+- **Individual fee line items** in cart, checkout, order view, invoices, credit memos, and order emails.
+- **A small order fee** built into configuration, no rule needed.
+- **An Order Fees grid** in the admin that tracks every fee charged, with CSV export.
+- **A per-item Extra Fee column** in the admin Items Ordered table and an optional column in the Sales Order grid.
 
-![Fee Rule Edit Form](docs/fee-rule-edit-form.png)
+**Which themes are supported?** Both **Hyva** and **Luma**. Fees show in cart and checkout on both themes.
 
-*Full rule editor with conditions, product/category browse popups, schedule, and tax settings.*
-
-### Admin Configuration
-
-![Admin Configuration](docs/admin-configuration.png)
-
-*Granular control: display settings, small order fee, tax display, fee breakdown, and advanced options.*
-
-### Order Fees Tracking
-
-![Order Fees Grid](docs/order-fees-grid.png)
-
-*Track every fee charged — linked to orders with amounts, tax, invoiced, and refunded totals.*
-
-### Admin Order View — Fee Breakdown
-
-![Admin Order Totals](docs/admin-order-totals.png)
-
-*Individual fee lines in Order Totals with per-item Extra Fee column in Items Ordered table.*
-
-### Customer Order View — Frontend
-
-![Customer Order View](docs/customer-order-view.png)
-
-*Customers see fee breakdown in their My Orders page — fully transparent.*
-
-### Cart Page — Fee Line Items
-
-![Cart Page Fees](docs/cart-page-fees.png)
-
-*Each fee shows as its own row in cart totals — works on both Hyva and Luma themes.*
-
-### Luma Checkout — Fee in Order Summary
-
-![Luma Checkout Fees](docs/luma-checkout-fees.png)
-
-*Fee lines visible in checkout order summary — updates dynamically based on payment method and address.*
+**What does it need?** Magento 2.4.4 to 2.4.8, PHP 8.1 to 8.4, and the free `mage2kishan/module-core` package.
 
 ---
 
 ## Need Custom Magento 2 Development?
+
+> **Get a free quote for your project in 24 hours** for custom modules, Hyva themes, performance work, M1 to M2 migrations, and Adobe Commerce Cloud.
 
 <p align="center">
   <a href="https://kishansavaliya.com/get-quote">
@@ -90,24 +60,32 @@ Stop losing margin on small orders, COD payments, and international shipping. **
 
 [![Hire on Upwork](https://img.shields.io/badge/Hire%20on%20Upwork-Top%20Rated%20Plus-14a800?style=for-the-badge&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~016dd1767321100e21)
 
+100% Job Success • 10+ Years Magento Experience
+Adobe Certified • Hyva Specialist
+
 </td>
 <td width="50%" align="center">
 
 ### Panth Infotech Agency
+**Magento Development Team**
 
 [![Visit Agency](https://img.shields.io/badge/Visit%20Agency-Panth%20Infotech-14a800?style=for-the-badge&logo=upwork&logoColor=white)](https://www.upwork.com/agencies/1881421506131960778/)
+
+Custom Modules • Theme Design • Migrations
+Performance • SEO • Adobe Commerce Cloud
 
 </td>
 </tr>
 </table>
 
+**Visit our website:** [kishansavaliya.com](https://kishansavaliya.com) &nbsp;|&nbsp; **Get a quote:** [kishansavaliya.com/get-quote](https://kishansavaliya.com/get-quote)
+
 ---
 
 ## Table of Contents
 
+- [Who Is It For](#who-is-it-for)
 - [Key Features](#key-features)
-- [Fee Calculation Types](#fee-calculation-types)
-- [Condition Types](#condition-types)
 - [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Configuration](#configuration)
@@ -115,75 +93,117 @@ Stop losing margin on small orders, COD payments, and international shipping. **
 - [How It Works](#how-it-works)
 - [Where Fees Display](#where-fees-display)
 - [Order Fees Grid](#order-fees-grid)
-- [Sample Data](#sample-data)
-- [Troubleshooting](#troubleshooting)
 - [FAQ](#faq)
 - [Support](#support)
+- [About Panth Infotech](#about-panth-infotech)
+- [Quick Links](#quick-links)
+
+---
+
+## Who Is It For
+
+- **Stores that use COD or bank transfer** and want to recover the processing cost from customers.
+- **Merchants who lose margin on small orders** and need a small order handling fee without a custom module.
+- **Multi-country stores** that charge different fees for domestic versus international shipping addresses.
+- **Wholesalers and B2B stores** that apply surcharges to specific customer groups.
+- **Any store on Hyva or Luma** that needs fee line items in cart, checkout, and order documents.
 
 ---
 
 ## Key Features
 
-- **Rule-Based Fee Engine** — create unlimited fee rules with conditions and priorities
-- **4 Calculation Types** — Fixed, Percentage, Combined (Fixed + Percent), Percentage with Fixed Minimum
-- **3 Apply Modes** — Per Order, Per Product (unique line items), Per Quantity (per unit)
-- **11 Condition Types** — store, website, date, customer group, payment method, country, subtotal, quantity, product IDs, product SKUs, category IDs
-- **Individual Fee Line Items** — each fee shows as its own row in cart/checkout/order (not lumped together)
-- **Browse Products & Categories Popup** — visual product/category chooser with search, select all, and selected items preview
-- **Tax on Fees** — assign tax class to any fee, 3 display modes (Excl/Incl/Both)
-- **Full Invoice & Credit Memo Support** — fees carry to invoices and are refundable
-- **Small Order Fee** — config-based fee for orders below minimum with customer-facing message
-- **Admin Order Control** — toggle "Apply Fees to Admin Orders" (default: No)
-- **Order Fees Grid** — dedicated admin grid tracking all fees with order links, export support
-- **Per-Item Fee Column** — "Extra Fee" column in admin order Items Ordered table
-- **Sales Order Grid Column** — optional Extra Fee column in the main order grid
-- **Multi-Store & Multi-Website** — per-store/website fee rules and configuration
-- **Stop Further Rules** — priority-based rule processing with stop flag
-- **Fee Breakdown or Aggregated** — show individual fee names or single "Additional Fees" total
-- **Email Integration** — fees in order confirmation, invoice, and credit memo emails
-- **Hyva + Luma Compatible** — works on both themes, cart and checkout
-- **8 Sample Fee Rules** — install via CLI for quick testing
-- **MEQP Compliant** — no ObjectManager, strict types, clean DI
-- **Zero Frontend Performance Impact** — all calculation server-side
+### Rule-Based Fee Engine
+- **Unlimited fee rules** with sort order, active status, and a "stop further rules" flag.
+- **11 condition types** per rule: store views, websites, date range, customer groups, payment methods, countries, min/max subtotal, min/max quantity, product IDs, category IDs.
+- **Priority-based processing** so rules run in the order you set, with the option to stop after the first match.
+
+### Calculation Types and Apply Modes
+- **4 calculation types**: Fixed amount, percentage of subtotal, fixed plus percentage, and percentage with a fixed minimum.
+- **3 apply modes**: Per order (once), per product (per unique line item that matches), or per quantity (per unit).
+- **Min/max fee caps** per rule so individual fees stay within bounds.
+
+### Individual Fee Line Items
+- **Each fee appears as its own row** in cart totals, checkout summary, admin order totals, customer order view, invoices, credit memos, and order emails.
+- **Fee breakdown or aggregated** display, controlled from configuration.
+
+### Small Order Fee
+- **Built into configuration**, no rule required.
+- Set a minimum order amount, fee type (fixed or percentage), label, tax class, and a customer-facing message.
+
+### Full Tax and Refund Support
+- **Assign a tax class to any fee rule**. Tax is calculated and tracked separately.
+- **3 tax display modes**: excluding tax, including tax, or both.
+- **Fees carry to invoices** and are refundable through credit memos.
+- **Per-rule refundable toggle** so some fees can be non-refundable.
+
+### Admin Tools
+- **Order Fees grid** under Panth Infotech > Extra Fee > Order Fees, tracking every fee with amounts, tax, invoiced totals, and refunded totals. Supports CSV export.
+- **Extra Fee column** in the admin Items Ordered table (per line item).
+- **Optional Extra Fee column** in the Sales Order grid.
+- **8 sample fee rules** installable by CLI for quick setup and testing.
+- **Debug mode** that logs fee calculations to `var/log/panth_extra_fee.log`.
+
+### Product and Category Browse Popups
+- **"Browse Products..."** button opens a searchable product grid with checkbox selection, "Select All", and a selected items preview.
+- **"Browse Categories..."** button opens an expandable category tree.
+- Both popups include an "Edit/View/Remove" table for the selected items.
+
+### Hyva + Luma Ready
+- **Works on both Hyva and Luma themes** in cart and checkout.
+- **Multi-store and multi-website** ready. Fee rules and configuration respect Magento's scope.
+- **Zero frontend performance impact** since all fee calculation runs server-side.
 
 ---
 
-## Fee Calculation Types
+## Preview
 
-| Type | Description | Example |
-|---|---|---|
-| **Fixed Amount** | Flat fee regardless of order value | $5.00 handling fee |
-| **Percentage of Subtotal** | Percentage of cart subtotal | 2.5% payment processing fee |
-| **Fixed + Percentage** | Both components added together | $2.00 + 1% COD fee |
-| **Percentage with Fixed Minimum** | Percentage calculation with a guaranteed minimum | Max(1.5%, $10) bulk processing |
+### Fee Rules Management
 
-### Apply Modes
+![Fee Rules Grid](docs/fee-rules-grid.png)
 
-| Mode | Description | Example |
-|---|---|---|
-| **Per Order** | Fee applied once per order | $15 international surcharge |
-| **Per Product** | Fee per unique line item matching conditions | $3 per premium product |
-| **Per Quantity** | Fee per unit ordered | $0.50 per unit handling |
+*Manage all your fee rules from a single grid -- filter by type, status, amount, and more.*
 
----
+### Fee Rule Editor with Product and Category Browse
 
-## Condition Types
+![Fee Rule Edit Form](docs/fee-rule-edit-form.png)
 
-Every rule can combine multiple conditions — **all must match** for the fee to apply:
+*Full rule editor with conditions, product/category browse popups, schedule, and tax settings.*
 
-| Condition | Description |
-|---|---|
-| **Store Views** | Apply to specific store views |
-| **Websites** | Apply to specific websites |
-| **Date Range** | Active only between From/To dates |
-| **Customer Groups** | General, Wholesale, Retailer, etc. |
-| **Payment Methods** | COD, Bank Transfer, Check/Money Order, etc. |
-| **Countries** | Billing/shipping country filter |
-| **Min/Max Order Subtotal** | Order value range |
-| **Min/Max Order Qty** | Item quantity range |
-| **Product IDs** | Specific products (with browse popup) |
-| **Category IDs** | Specific categories (with browse popup) |
-| **Stop Further Rules** | Skip remaining rules after this one matches |
+### Admin Configuration
+
+![Admin Configuration](docs/admin-configuration.png)
+
+*Granular control: display settings, small order fee, tax display, fee breakdown, and advanced options.*
+
+### Order Fees Tracking
+
+![Order Fees Grid](docs/order-fees-grid.png)
+
+*Track every fee charged -- linked to orders with amounts, tax, invoiced, and refunded totals.*
+
+### Admin Order View -- Fee Breakdown
+
+![Admin Order Totals](docs/admin-order-totals.png)
+
+*Individual fee lines in Order Totals with per-item Extra Fee column in Items Ordered table.*
+
+### Customer Order View -- Frontend
+
+![Customer Order View](docs/customer-order-view.png)
+
+*Customers see fee breakdown in their My Orders page.*
+
+### Cart Page -- Fee Line Items
+
+![Cart Page Fees](docs/cart-page-fees.png)
+
+*Each fee shows as its own row in cart totals, on both Hyva and Luma.*
+
+### Luma Checkout -- Fee in Order Summary
+
+![Luma Checkout Fees](docs/luma-checkout-fees.png)
+
+*Fee lines visible in checkout order summary, updating dynamically based on payment method and address.*
 
 ---
 
@@ -193,23 +213,24 @@ Every rule can combine multiple conditions — **all must match** for the fee to
 |---|---|
 | Magento Open Source | 2.4.4, 2.4.5, 2.4.6, 2.4.7, 2.4.8 |
 | Adobe Commerce | 2.4.4, 2.4.5, 2.4.6, 2.4.7, 2.4.8 |
-| Adobe Commerce Cloud | 2.4.4 — 2.4.8 |
-| PHP | 8.1, 8.2, 8.3, 8.4 |
+| Adobe Commerce Cloud | 2.4.4 to 2.4.8 |
+| PHP | 8.1.x, 8.2.x, 8.3.x, 8.4.x |
 | Hyva Theme | 1.0+ (fully compatible) |
 | Luma Theme | Native support |
-| Panth Core | ^1.0 (installed automatically) |
+| Required Dependency | `mage2kishan/module-core` (free) |
 
 ---
 
 ## Installation
 
-### Composer (Recommended)
+### Composer Installation (Recommended)
 
 ```bash
 composer require mage2kishan/module-extra-fee
 bin/magento module:enable Panth_Core Panth_ExtraFee
 bin/magento setup:upgrade
 bin/magento setup:di:compile
+bin/magento setup:static-content:deploy -f
 bin/magento cache:flush
 ```
 
@@ -219,64 +240,76 @@ bin/magento cache:flush
 bin/magento panth:extrafee:install-sample-data
 ```
 
-Creates 8 ready-to-use fee rules for testing.
+This creates 8 ready-to-use fee rules for testing.
 
-### Verify
+### Manual Installation via ZIP
+
+1. Download the latest release from [Packagist](https://packagist.org/packages/mage2kishan/module-extra-fee) or from the [product page](https://kishansavaliya.com/magento-2-extra-fee.html).
+2. Extract it to `app/code/Panth/ExtraFee/` in your Magento install.
+3. Make sure `Panth_Core` is installed too (required dependency).
+4. Run the commands above starting from `bin/magento module:enable`.
+
+### Verify Installation
 
 ```bash
 bin/magento module:status Panth_ExtraFee
-# Module is enabled
+# Expected: Module is enabled
+```
+
+After install, open:
+```
+Admin -> Stores -> Configuration -> Panth Extensions -> Extra Fee
 ```
 
 ---
 
 ## Configuration
 
-Navigate to **Stores > Configuration > Panth Extensions > Extra Fee**.
+Go to **Stores -> Configuration -> Panth Extensions -> Extra Fee**.
 
 ### General Settings
 
-| Setting | Default | Description |
-|---|---|---|
-| Enable Extra Fee | Yes | Master toggle |
-| Apply Fees to Admin Orders | No | Skip fees when admin creates orders from backend |
-| Fee Display Title | Additional Fees | Heading shown above fee lines in totals |
+| Setting | Group | Default | Description |
+|---|---|---|---|
+| Enable Extra Fee | general | Yes | Master toggle for the extra fee module. |
+| Apply Fees to Admin Orders | general | No | Apply fees when admin creates orders from the backend. |
+| Fee Display Title | general | Additional Fees | Heading shown above fee lines in cart and checkout. |
 
 ### Display Settings
 
-| Setting | Default | Description |
-|---|---|---|
-| Show in Cart | Yes | Display fees on cart page |
-| Show in Checkout | Yes | Display fees in checkout summary |
-| Show in Order View | Yes | Display in customer My Orders |
-| Show in Invoice | Yes | Include in invoice totals |
-| Show in Credit Memo | Yes | Include in credit memo totals |
-| Show in Order Emails | Yes | Include in transactional emails |
-| Show in Order Grid | No | Add Extra Fee column to sales order grid |
-| Tax Display Type | Excluding Tax | Excl Tax / Incl Tax / Both |
-| Show Fee Breakdown | Yes | Individual fee lines vs single total |
-| Show Zero Amount Fees | No | Show fees with $0.00 amount |
+| Setting | Group | Default | Description |
+|---|---|---|---|
+| Show in Cart | display | Yes | Show fees on the cart page. |
+| Show in Checkout | display | Yes | Show fees in the checkout summary. |
+| Show in Order View | display | Yes | Show fees in the customer My Orders page. |
+| Show in Invoice | display | Yes | Include fees in invoice totals. |
+| Show in Credit Memo | display | Yes | Include fees in credit memo totals. |
+| Show in Order Emails | display | Yes | Include fees in transactional emails. |
+| Show in Order Grid | display | No | Add an Extra Fee column to the Sales Order grid. |
+| Tax Display Type | display | Excluding Tax | Show fees excluding tax, including tax, or both. |
+| Show Fee Breakdown | display | Yes | Show individual fee lines instead of a single total. |
+| Show Zero Amount Fees | display | No | Show fee lines with a $0.00 amount. |
 
 ### Small Order Fee
 
-| Setting | Default | Description |
-|---|---|---|
-| Enable Small Order Fee | No | Charge fee for orders below minimum |
-| Minimum Order Amount | 50 | Threshold amount |
-| Fee Type | Fixed | Fixed or Percentage |
-| Fee Amount | 5 | Fee amount or percentage |
-| Fee Label | Small Order Fee | Label shown to customer |
-| Tax Class | None | Tax class for the fee |
-| Message Template | Orders below %1... | Customer-facing message |
+| Setting | Group | Default | Description |
+|---|---|---|---|
+| Enable Small Order Fee | small_order | No | Charge a fee for orders below the minimum amount. |
+| Minimum Order Amount | small_order | 50 | Orders below this amount get the fee. |
+| Fee Type | small_order | Fixed | Fixed or percentage. |
+| Fee Amount | small_order | 5 | Fee amount or percentage value. |
+| Fee Label | small_order | Small Order Fee | Label shown to the customer. |
+| Tax Class | small_order | None | Tax class applied to the small order fee. |
+| Message Template | small_order | (template) | Customer-facing message. Use %1 for minimum amount and %2 for fee amount. |
 
 ### Advanced
 
-| Setting | Default | Description |
-|---|---|---|
-| Apply Fees After Discount | No | Calculate on subtotal before or after discounts |
-| Maximum Total Fee Per Order | (empty) | Safety cap on total fees |
-| Exclude Virtual Products | No | Skip virtual/downloadable products in calculations |
-| Debug Mode | No | Log fee calculations to `var/log/panth_extra_fee.log` |
+| Setting | Group | Default | Description |
+|---|---|---|---|
+| Apply Fees After Discount | advanced | No | Calculate fees on the subtotal after discounts are applied. |
+| Maximum Total Fee Per Order | advanced | (empty) | Safety cap on total fees per order. Leave empty for no limit. |
+| Exclude Virtual Products | advanced | No | Skip virtual and downloadable products in fee calculations. |
+| Debug Mode | advanced | No | Log fee calculations to `var/log/panth_extra_fee.log`. |
 
 ---
 
@@ -286,61 +319,78 @@ Navigate to **Panth Infotech > Extra Fee > Fee Rules**.
 
 ### Creating a Fee Rule
 
-1. Click **Add New Fee Rule**
-2. **General Settings**: Name, description, active status, sort order, stop further rules
-3. **Fee Calculation**: Label, type (fixed/percent/combined/min), amount, apply per (order/product/qty), min/max caps
-4. **Tax Settings**: Tax class, refundable toggle
-5. **Conditions**: Store views, websites, customer groups, payment methods, countries, subtotal/qty ranges
-6. **Product & Category Selection**: Browse popup with search, select all, preview table
-7. **Schedule**: Optional from/to dates
-8. Click **Save**
+1. Click **Add New Fee Rule**.
+2. **General**: Name, description, active status, sort order, stop further rules flag.
+3. **Fee Calculation**: Label, type (fixed/percentage/combined/percentage with minimum), amount, apply per (order/product/quantity), per-rule min/max caps.
+4. **Tax Settings**: Tax class, refundable toggle.
+5. **Conditions**: Store views, websites, customer groups, payment methods, countries, subtotal range, quantity range, date range.
+6. **Product and Category Selection**: Use the browse popups to pick products or categories.
+7. Click **Save**.
 
-### Product & Category Browse Popup
+### Fee Calculation Types
 
-The rule editor includes **"Browse Products..."** and **"Browse Categories..."** buttons that open full-featured popup dialogs:
+| Type | Description | Example |
+|---|---|---|
+| Fixed Amount | Flat fee regardless of order value | $5.00 handling fee |
+| Percentage of Subtotal | Percentage of cart subtotal | 2.5% payment processing fee |
+| Fixed + Percentage | Both added together | $2.00 + 1% COD fee |
+| Percentage with Fixed Minimum | Percentage with a guaranteed minimum | max(1.5%, $10) bulk processing |
 
-- **Product popup**: Searchable grid with ID, name, SKU, type, price. Checkbox selection with "Select All" and pills preview.
-- **Category popup**: Expandable category tree with checkboxes and level indicators.
-- **Selected items table**: Shows selected products/categories below the field with Edit/View/Remove actions.
+### Apply Modes
+
+| Mode | Description |
+|---|---|
+| Per Order | Fee applied once per order |
+| Per Product | Fee per unique line item that matches the conditions |
+| Per Quantity | Fee per unit ordered |
+
+### Condition Types
+
+| Condition | Description |
+|---|---|
+| Store Views | Limit to specific store views |
+| Websites | Limit to specific websites |
+| Date Range | Active only between a from and to date |
+| Customer Groups | General, Wholesale, Retailer, etc. |
+| Payment Methods | COD, Bank Transfer, Check/Money Order, etc. |
+| Countries | Filter by billing or shipping country |
+| Min/Max Order Subtotal | Trigger when cart subtotal is in a range |
+| Min/Max Order Qty | Trigger when item count is in a range |
+| Product IDs | Specific products, picked with the browse popup |
+| Category IDs | Specific categories, picked with the browse popup |
+| Stop Further Rules | Stop processing lower-priority rules after this one matches |
 
 ---
 
 ## How It Works
 
-### Checkout Flow
+1. Customer adds products to cart.
+2. The quote total collector runs the fee calculation engine.
+3. The engine loads active rules ordered by sort order.
+4. For each rule, it validates all conditions against the current quote.
+5. Matching rules calculate the fee based on type and apply mode, then apply per-rule min/max caps.
+6. Each calculated fee is saved to the `panth_extra_fee_quote` table.
+7. Individual fee segments are returned to cart and checkout for display.
+8. On order placement, an observer copies fees from `panth_extra_fee_quote` to `panth_extra_fee_order`.
+9. Fees carry through to invoices, credit memos, and order emails.
 
-1. Customer adds products to cart
-2. **Quote total collector** runs fee calculation engine
-3. Engine loads active rules ordered by `sort_order`
-4. For each rule: validates all 11 conditions against the quote
-5. Matching rules: calculates fee based on type and apply mode
-6. Applies min/max fee constraints and global maximum cap
-7. Each fee saved to `panth_extra_fee_quote` table
-8. **Individual fee segments** returned to cart/checkout for display
-9. On order placement: **observer** transfers quote fees to `panth_extra_fee_order`
-10. Fees carry through to invoices, credit memos, and emails
-
-### Admin Order Flow
-
-- By default, admin-created orders skip all extra fees
-- Toggle "Apply Fees to Admin Orders" to enable
-- All fee rules apply identically to frontend orders when enabled
+Admin-created orders skip all fees by default. Set "Apply Fees to Admin Orders" to Yes in configuration to change this.
 
 ---
 
 ## Where Fees Display
 
-| Location | Individual Lines | Aggregated |
-|---|---|---|
-| Hyva Cart Page | Each fee as separate row | Single "Additional Fees" row |
-| Luma Cart Page | Each fee as separate row | Single row |
-| Luma Checkout Summary | Each fee with label | Single row |
-| Admin Order View — Order Totals | Each fee labeled | Configurable |
-| Admin Order View — Items Ordered | Per-item "Extra Fee" column | — |
-| Customer My Orders | Each fee in totals | Configurable |
-| Order Confirmation Email | Fee breakdown | Configurable |
-| Invoice & Credit Memo | Fee lines | Configurable |
-| Sales Order Grid | Total extra fee column | Single column |
+| Location | Behavior |
+|---|---|
+| Hyva Cart Page | Each fee as a separate row |
+| Luma Cart Page | Each fee as a separate row |
+| Luma Checkout Summary | Each fee labeled, or a single aggregated row |
+| Admin Order View - Order Totals | Each fee labeled, configurable aggregation |
+| Admin Order View - Items Ordered | Per-item "Extra Fee" column |
+| Customer My Orders | Fees in order totals, configurable aggregation |
+| Order Confirmation Email | Fee lines, configurable aggregation |
+| Invoice and Credit Memo | Fee lines, configurable aggregation |
+| Sales Order Grid | Optional total extra fee column |
 
 ---
 
@@ -348,95 +398,49 @@ The rule editor includes **"Browse Products..."** and **"Browse Categories..."**
 
 Navigate to **Panth Infotech > Extra Fee > Order Fees**.
 
-Tracks every fee charged with:
+Tracks every fee charged with these columns: ID, Order #, Fee Label, Fee Type, Fee Amount (base and store currency), Tax (base and store), Fee Invoiced (base), Fee Refunded (base), and Created At.
 
-| Column | Description |
-|---|---|
-| ID | Auto-increment record ID |
-| Order # | Clickable link to order (opens in new tab) |
-| Fee Label | Rule name shown to customer |
-| Fee Type | Fixed, Percent, Combined, etc. |
-| Fee Amount (Base/Store) | Charged amount |
-| Tax (Base/Store) | Tax calculated on fee |
-| Fee Invoiced (Base) | Amount invoiced |
-| Fee Refunded (Base) | Amount refunded |
-| Created At | Timestamp |
-
-Supports **CSV export** for accounting.
-
----
-
-## Sample Data
-
-The CLI command creates 8 production-realistic fee rules:
-
-| Rule | Type | Amount | Condition |
-|---|---|---|---|
-| Payment Processing Fee | 2.5% | Per order | COD, Bank Transfer |
-| Small Order Handling Fee | $5 fixed | Per order | Subtotal < $30 |
-| International Shipping Surcharge | $15 fixed | Per order | IN, BR, MX, JP, CN |
-| Bulk Order Processing | $10 min / 1.5% | Per order | 10+ items, Wholesale group |
-| Premium Product Handling | $3 fixed | Per product | Specific categories |
-| COD Processing Fee | $2 + 1% | Per order | Cash on Delivery |
-| Express Weekend Processing | $7.50 fixed | Per order | Disabled by default |
-| Order Insurance Fee | 0.5% | Per order | Subtotal > $500 |
-
-Install: `bin/magento panth:extrafee:install-sample-data`
-
----
-
-## Troubleshooting
-
-| Issue | Solution |
-|---|---|
-| Fees not showing in cart | Check: module enabled, rules active, conditions match your cart |
-| Fee shows in total but no line item | Clear cache, flush static content, hard-refresh browser |
-| Fees not saved to order | Run `setup:di:compile` — observer needs compilation |
-| Payment method fee showing without selection | Update to latest — fixed (skips when no method selected) |
-| Admin order creation shows fees | Set "Apply Fees to Admin Orders" to No in config |
-| Browse Products popup empty | Run `setup:di:compile && cache:flush` |
-| Fee amounts wrong | Check rule priority (sort_order) and "Stop Further Rules" settings |
-| Fees not in emails | Check Display Settings > Show in Order Emails = Yes |
+Supports **CSV export** for accounting and reconciliation.
 
 ---
 
 ## FAQ
 
-### Can I charge different fees for different payment methods?
+### Can I charge a different fee for each payment method?
 
-Yes. Create separate rules for each payment method. Example: 2.5% for COD, $2 for Bank Transfer.
+Yes. Create a separate rule for each payment method. Set the Payment Methods condition to match only the method you want, then set the fee label, type, and amount for that rule.
 
-### Can I charge per product in specific categories?
+### Can I charge per product in a specific category?
 
-Yes. Set "Apply Per" to "Per Product" and select categories via "Browse Categories..." popup. Fee multiplied by matching items.
+Yes. Set "Apply Per" to "Per Product" and select the categories via the "Browse Categories..." popup. The fee is multiplied by the number of matching line items.
 
-### Can I set a maximum total fee per order?
+### Can I put a cap on total fees per order?
 
-Yes. In Advanced settings, set "Maximum Total Fee Per Order". If multiple rules total exceeds this cap, fees are proportionally scaled down.
+Yes. Set "Maximum Total Fee Per Order" in the Advanced section. If the combined total of matched rules exceeds that cap, the fees are scaled down.
 
 ### Are fees refundable?
 
-Configurable per rule. The "Is Refundable" toggle controls whether a fee can be refunded via credit memo.
+It depends on the rule. Each rule has a "Is Refundable" toggle. Turn it off for non-refundable fees like payment processing charges.
 
 ### Do fees work with discount codes?
 
-Yes. The "Apply Fees After Discount" setting controls whether fees are calculated on the original or discounted subtotal.
+Yes. The "Apply Fees After Discount" setting in the Advanced section controls whether fees are calculated on the original subtotal or the discounted one.
 
-### Does it work with Hyva theme?
+### Does it work with the Hyva theme?
 
-Yes. Fully compatible with both Hyva and Luma themes — cart page, checkout, order view, and emails.
+Yes. Fees display in the Hyva cart page and the Hyva checkout, fully compatible.
 
-### Can I skip fees for admin-created orders?
+### Can admin-created orders skip the fees?
 
-Yes. "Apply Fees to Admin Orders" defaults to No. Admin orders have zero extra fees unless you enable it.
+Yes. "Apply Fees to Admin Orders" defaults to No, so backend orders get no fees unless you enable it.
 
-### Can customers see why they're being charged?
+### Can customers see why they are charged?
 
-Yes. Each fee shows with its label (e.g., "Small Order Handling Fee", "International Shipping Surcharge"). Enable "Show Fee Breakdown" for individual lines.
+Yes. Each fee shows its label (for example, "Small Order Handling Fee" or "International Shipping Surcharge"). With "Show Fee Breakdown" enabled, each fee gets its own line.
 
 ### Does it slow down checkout?
 
-No. Fee calculation is lightweight — it loads active rules once, evaluates conditions in PHP, and adds totals. No external API calls or complex database queries.
+No. Fee calculation loads active rules once, evaluates conditions in PHP, and adds totals. There are no external API calls.
 
 ---
 
@@ -444,6 +448,7 @@ No. Fee calculation is lightweight — it loads active rules once, evaluates con
 
 | Channel | Contact |
 |---|---|
+| Product Page | [kishansavaliya.com/magento-2-extra-fee.html](https://kishansavaliya.com/magento-2-extra-fee.html) |
 | Email | kishansavaliyakb@gmail.com |
 | Website | [kishansavaliya.com](https://kishansavaliya.com) |
 | WhatsApp | +91 84012 70422 |
@@ -451,7 +456,11 @@ No. Fee calculation is lightweight — it loads active rules once, evaluates con
 | Upwork (Top Rated Plus) | [Hire Kishan Savaliya](https://www.upwork.com/freelancers/~016dd1767321100e21) |
 | Upwork Agency | [Panth Infotech](https://www.upwork.com/agencies/1881421506131960778/) |
 
+Response time: 1-2 business days.
+
 ### Need Custom Magento Development?
+
+Looking for **custom Magento module development**, **Hyva theme work**, **store migrations**, or **performance tuning**? Get a free quote in 24 hours:
 
 <p align="center">
   <a href="https://kishansavaliya.com/get-quote">
@@ -459,29 +468,55 @@ No. Fee calculation is lightweight — it loads active rules once, evaluates con
   </a>
 </p>
 
----
-
-## License
-
-Proprietary — see `LICENSE.txt`. One license per Magento production installation.
+<p align="center">
+  <a href="https://www.upwork.com/freelancers/~016dd1767321100e21">
+    <img src="https://img.shields.io/badge/Hire%20Kishan-Top%20Rated%20Plus-14a800?style=for-the-badge&logo=upwork&logoColor=white" alt="Hire on Upwork" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://www.upwork.com/agencies/1881421506131960778/">
+    <img src="https://img.shields.io/badge/Visit-Panth%20Infotech%20Agency-14a800?style=for-the-badge&logo=upwork&logoColor=white" alt="Visit Agency" />
+  </a>
+  &nbsp;&nbsp;
+  <a href="https://kishansavaliya.com/magento-2-extra-fee.html">
+    <img src="https://img.shields.io/badge/View%20Product%20Page-magento--2--extra--fee-0D9488?style=for-the-badge" alt="View Product Page" />
+  </a>
+</p>
 
 ---
 
 ## About Panth Infotech
 
-Built and maintained by **Kishan Savaliya** — [kishansavaliya.com](https://kishansavaliya.com) — **Top Rated Plus** Magento developer on Upwork with 10+ years of eCommerce experience.
+Built and maintained by **Kishan Savaliya** ([kishansavaliya.com](https://kishansavaliya.com)), a **Top Rated Plus** Magento developer on Upwork with 10+ years of eCommerce experience.
 
-**Panth Infotech** specializes in high-quality Magento 2 extensions and themes for Hyva and Luma storefronts. Browse our full catalog of 35+ extensions on [Packagist](https://packagist.org/packages/mage2kishan/) and the [Adobe Commerce Marketplace](https://commercemarketplace.adobe.com).
+**Panth Infotech** is a Magento 2 development agency that builds high quality, security focused extensions and themes for both Hyva and Luma storefronts. The extension suite covers SEO, performance, checkout, product presentation, customer engagement, and store management, with each module built to MEQP standards and tested across Magento 2.4.4 to 2.4.8.
 
-### Quick Links
-
-- [kishansavaliya.com](https://kishansavaliya.com)
-- [Get a Quote](https://kishansavaliya.com/get-quote)
-- [Upwork Profile](https://www.upwork.com/freelancers/~016dd1767321100e21)
-- [Panth Infotech Agency](https://www.upwork.com/agencies/1881421506131960778/)
-- [All Packages on Packagist](https://packagist.org/packages/mage2kishan/)
-- [GitHub](https://github.com/mage2sk)
+Browse the full extension catalog on our [Magento extensions page](https://kishansavaliya.com/magento-extensions.html) or on [Packagist](https://packagist.org/packages/mage2kishan/).
 
 ---
 
-**SEO Keywords:** magento 2 extra fee, magento checkout surcharge, magento additional charges, magento payment method fee, magento small order fee, magento handling fee, magento country surcharge, magento product fee, magento category fee, magento customer group fee, magento order fee extension, magento 2 extra charges plugin, magento fee rules, magento checkout fee extension, magento 2 surcharge module, panth extra fee, panth infotech, mage2kishan, mage2sk, hire magento developer, top rated plus upwork, magento 2 extension developer, magento 2.4.8 extra fee, hyva extra fee, luma checkout fee
+## Quick Links
+
+| Resource | Link |
+|---|---|
+| **Product Page** | [magento-2-extra-fee.html](https://kishansavaliya.com/magento-2-extra-fee.html) |
+| **Packagist** | [mage2kishan/module-extra-fee](https://packagist.org/packages/mage2kishan/module-extra-fee) |
+| **GitHub** | [mage2sk/module-extra-fee](https://github.com/mage2sk/module-extra-fee) |
+| **Website** | [kishansavaliya.com](https://kishansavaliya.com) |
+| **Free Quote** | [kishansavaliya.com/get-quote](https://kishansavaliya.com/get-quote) |
+| **Upwork (Top Rated Plus)** | [Hire Kishan Savaliya](https://www.upwork.com/freelancers/~016dd1767321100e21) |
+| **Upwork Agency** | [Panth Infotech](https://www.upwork.com/agencies/1881421506131960778/) |
+| **Email** | kishansavaliyakb@gmail.com |
+| **WhatsApp** | +91 84012 70422 |
+
+---
+
+<p align="center">
+  <strong>Ready to add checkout fees to your store?</strong><br/>
+  <a href="https://kishansavaliya.com/magento-2-extra-fee.html">
+    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20See%20Extra%20Fee%20%E2%86%92-Product%20Page%20%26%20Demo-DC2626?style=for-the-badge" alt="See Extra Fee" />
+  </a>
+</p>
+
+---
+
+**SEO Keywords:** magento 2 extra fee, magento 2 extra fee extension, magento 2 extra fee module, magento 2 checkout fee, magento 2 surcharge, magento 2 payment method fee, magento 2 order fee, magento 2 handling fee, magento 2 small order fee, magento 2 additional fee, magento 2 extra charges, magento 2 cod fee, magento 2 bank transfer fee, magento 2 international surcharge, magento 2 customer group fee, magento 2 category fee, magento 2 product fee, magento 2 checkout surcharge module, hyva extra fee, luma checkout fee, magento 2.4.8 extra fee, php 8.4 extra fee, mage2kishan extra fee, panth extra fee, panth infotech, hire magento developer, top rated plus upwork, kishan savaliya magento, custom magento development
