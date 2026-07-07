@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Total\Invoice;
@@ -13,27 +12,12 @@ use Psr\Log\LoggerInterface;
 
 class ExtraFee extends AbstractTotal
 {
-    /**
-     * @var OrderFeeResource
-     */
     private OrderFeeResource $orderFeeResource;
 
-    /**
-     * @var OrderFeeCollectionFactory
-     */
     private OrderFeeCollectionFactory $orderFeeCollectionFactory;
 
-    /**
-     * @var LoggerInterface
-     */
     private LoggerInterface $logger;
 
-    /**
-     * @param OrderFeeResource $orderFeeResource
-     * @param OrderFeeCollectionFactory $orderFeeCollectionFactory
-     * @param LoggerInterface $logger
-     * @param array $data
-     */
     public function __construct(
         OrderFeeResource $orderFeeResource,
         OrderFeeCollectionFactory $orderFeeCollectionFactory,
@@ -46,12 +30,6 @@ class ExtraFee extends AbstractTotal
         $this->logger = $logger;
     }
 
-    /**
-     * Collect extra fee totals for invoice.
-     *
-     * @param Invoice $invoice
-     * @return $this
-     */
     public function collect(Invoice $invoice): self
     {
         parent::collect($invoice);
@@ -72,7 +50,6 @@ class ExtraFee extends AbstractTotal
             $totalTax = 0.0;
             $baseTotalTax = 0.0;
 
-            /** @var OrderFee $orderFee */
             foreach ($collection as $orderFee) {
                 $baseFeeAmount = (float)$orderFee->getBaseFeeAmount();
                 $feeAmount = (float)$orderFee->getFeeAmount();
@@ -81,7 +58,6 @@ class ExtraFee extends AbstractTotal
                 $baseTaxAmount = (float)$orderFee->getBaseTaxAmount();
                 $taxAmount = (float)$orderFee->getTaxAmount();
 
-                // Calculate remaining amount to invoice
                 $baseRemainingFee = $baseFeeAmount - $baseFeeInvoiced;
                 $remainingFee = $feeAmount - $feeInvoiced;
 
@@ -89,7 +65,6 @@ class ExtraFee extends AbstractTotal
                     continue;
                 }
 
-                // Calculate tax proportion for the remaining fee
                 $baseRemainingTax = 0.0;
                 $remainingTax = 0.0;
                 if ($baseFeeAmount > 0.0) {
@@ -103,7 +78,6 @@ class ExtraFee extends AbstractTotal
                 $baseTotalTax += $baseRemainingTax;
                 $totalTax += $remainingTax;
 
-                // Update invoiced amounts on the OrderFee record
                 $orderFee->setBaseFeeInvoiced($baseFeeInvoiced + $baseRemainingFee);
                 $orderFee->setFeeInvoiced($feeInvoiced + $remainingFee);
                 $this->orderFeeResource->save($orderFee);

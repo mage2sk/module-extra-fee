@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Observer;
@@ -34,7 +33,6 @@ class SaveOrderFees implements ObserverInterface
                 return;
             }
 
-            // Multi-shipping support
             $orders = $observer->getEvent()->getOrders();
             if (!empty($orders)) {
                 foreach ($orders as $o) {
@@ -57,9 +55,8 @@ class SaveOrderFees implements ObserverInterface
             return;
         }
 
-        // Check if fees already transferred (avoid duplicates on re-runs)
         $existingCheck = $this->quoteFeeCollectionFactory->create();
-        // Actually check order fees table
+
         $conn = $this->orderFeeResource->getConnection();
         $existing = (int)$conn->fetchOne(
             $conn->select()

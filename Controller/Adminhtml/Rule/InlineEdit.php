@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -15,21 +14,10 @@ class InlineEdit extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * @var FeeRuleRepositoryInterface
-     */
     private FeeRuleRepositoryInterface $feeRuleRepository;
 
-    /**
-     * @var JsonFactory
-     */
     private JsonFactory $jsonFactory;
 
-    /**
-     * @param Context $context
-     * @param FeeRuleRepositoryInterface $feeRuleRepository
-     * @param JsonFactory $jsonFactory
-     */
     public function __construct(
         Context $context,
         FeeRuleRepositoryInterface $feeRuleRepository,
@@ -40,11 +28,6 @@ class InlineEdit extends Action implements HttpPostActionInterface
         $this->jsonFactory = $jsonFactory;
     }
 
-    /**
-     * Process inline edit
-     *
-     * @return \Magento\Framework\Controller\Result\Json
-     */
     public function execute()
     {
         $resultJson = $this->jsonFactory->create();

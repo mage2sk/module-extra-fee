@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Block\Adminhtml\Sales\Order\Creditmemo\Totals;
@@ -11,34 +10,14 @@ use Panth\ExtraFee\Helper\Data as ExtraFeeHelper;
 use Panth\ExtraFee\Model\ResourceModel\OrderFee\CollectionFactory as OrderFeeCollectionFactory;
 use Panth\ExtraFee\Model\FeeRuleRepository;
 
-/**
- * Admin creditmemo view extra fee totals block.
- * Only shows refundable fees with remaining refundable amounts.
- */
 class ExtraFee extends Template
 {
-    /**
-     * @var ExtraFeeHelper
-     */
     private ExtraFeeHelper $helper;
 
-    /**
-     * @var OrderFeeCollectionFactory
-     */
     private OrderFeeCollectionFactory $orderFeeCollectionFactory;
 
-    /**
-     * @var FeeRuleRepository
-     */
     private FeeRuleRepository $feeRuleRepository;
 
-    /**
-     * @param Context $context
-     * @param ExtraFeeHelper $helper
-     * @param OrderFeeCollectionFactory $orderFeeCollectionFactory
-     * @param FeeRuleRepository $feeRuleRepository
-     * @param array $data
-     */
     public function __construct(
         Context $context,
         ExtraFeeHelper $helper,
@@ -52,11 +31,6 @@ class ExtraFee extends Template
         $this->feeRuleRepository = $feeRuleRepository;
     }
 
-    /**
-     * Initialize extra fee totals for the admin creditmemo view.
-     *
-     * @return $this
-     */
     public function initTotals(): self
     {
         if (!$this->helper->isEnabled()) {
@@ -97,12 +71,6 @@ class ExtraFee extends Template
         return $this;
     }
 
-    /**
-     * Check if a fee is refundable based on its rule.
-     *
-     * @param \Panth\ExtraFee\Model\OrderFee $orderFee
-     * @return bool
-     */
     private function isRefundable($orderFee): bool
     {
         $ruleId = $orderFee->getRuleId();
@@ -118,12 +86,6 @@ class ExtraFee extends Template
         }
     }
 
-    /**
-     * Get refundable amounts remaining for a fee.
-     *
-     * @param \Panth\ExtraFee\Model\OrderFee $orderFee
-     * @return array [fee_amount, base_fee_amount, tax_amount, base_tax_amount]
-     */
     private function getRefundableAmounts($orderFee): array
     {
         $feeInvoiced = (float) $orderFee->getData('fee_invoiced');
@@ -143,14 +105,6 @@ class ExtraFee extends Template
         ];
     }
 
-    /**
-     * Add individual fee totals for each refundable fee line.
-     *
-     * @param \Magento\Framework\View\Element\AbstractBlock $parent
-     * @param \Panth\ExtraFee\Model\ResourceModel\OrderFee\Collection $collection
-     * @param int $taxDisplay
-     * @return void
-     */
     private function addBreakdownTotals($parent, $collection, int $taxDisplay): void
     {
         $index = 0;
@@ -201,14 +155,6 @@ class ExtraFee extends Template
         }
     }
 
-    /**
-     * Add a single combined refundable extra fees total.
-     *
-     * @param \Magento\Framework\View\Element\AbstractBlock $parent
-     * @param \Panth\ExtraFee\Model\ResourceModel\OrderFee\Collection $collection
-     * @param int $taxDisplay
-     * @return void
-     */
     private function addAggregatedTotal($parent, $collection, int $taxDisplay): void
     {
         $totalFee = 0.0;

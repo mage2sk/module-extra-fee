@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Calculator;
@@ -10,14 +9,6 @@ use Panth\ExtraFee\Model\FeeRule;
 
 class ConditionChecker
 {
-    /**
-     * Check if a fee rule is valid for the given quote.
-     * All conditions must pass for the rule to be valid.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     public function isRuleValid(FeeRule $rule, Quote $quote): bool
     {
         if (!$rule->getIsActive()) {
@@ -37,13 +28,6 @@ class ConditionChecker
             && $this->isCategoryValid($rule, $quote);
     }
 
-    /**
-     * Validate store condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isStoreValid(FeeRule $rule, Quote $quote): bool
     {
         $storeIds = $rule->getStoreIdsArray();
@@ -55,13 +39,6 @@ class ConditionChecker
         return in_array((string)$quote->getStoreId(), $storeIds, true);
     }
 
-    /**
-     * Validate website condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isWebsiteValid(FeeRule $rule, Quote $quote): bool
     {
         $websiteIds = $rule->getWebsiteIdsArray();
@@ -76,12 +53,6 @@ class ConditionChecker
         return in_array($quoteWebsiteId, $websiteIds, true);
     }
 
-    /**
-     * Validate date range condition.
-     *
-     * @param FeeRule $rule
-     * @return bool
-     */
     private function isDateValid(FeeRule $rule): bool
     {
         $now = date('Y-m-d');
@@ -99,13 +70,6 @@ class ConditionChecker
         return true;
     }
 
-    /**
-     * Validate customer group condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isCustomerGroupValid(FeeRule $rule, Quote $quote): bool
     {
         $customerGroups = $rule->getCustomerGroupsArray();
@@ -119,13 +83,6 @@ class ConditionChecker
         return in_array($quoteGroupId, $customerGroups, true);
     }
 
-    /**
-     * Validate payment method condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isPaymentMethodValid(FeeRule $rule, Quote $quote): bool
     {
         $paymentMethods = $rule->getPaymentMethodsArray();
@@ -138,20 +95,12 @@ class ConditionChecker
         $quotePaymentMethod = $payment ? (string)$payment->getMethod() : '';
 
         if ($quotePaymentMethod === '') {
-            // Payment method not yet selected — rule requires specific methods, so skip
             return false;
         }
 
         return in_array($quotePaymentMethod, $paymentMethods, true);
     }
 
-    /**
-     * Validate country condition against billing or shipping address.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isCountryValid(FeeRule $rule, Quote $quote): bool
     {
         $countries = $rule->getCountriesArray();
@@ -178,13 +127,6 @@ class ConditionChecker
         return false;
     }
 
-    /**
-     * Validate region condition against billing or shipping address.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isRegionValid(FeeRule $rule, Quote $quote): bool
     {
         $regions = $this->parseCommaSeparated($rule->getRegions());
@@ -211,13 +153,6 @@ class ConditionChecker
         return false;
     }
 
-    /**
-     * Validate subtotal condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isSubtotalValid(FeeRule $rule, Quote $quote): bool
     {
         $subtotal = (float)$quote->getBaseSubtotal();
@@ -235,13 +170,6 @@ class ConditionChecker
         return true;
     }
 
-    /**
-     * Validate quantity condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isQuantityValid(FeeRule $rule, Quote $quote): bool
     {
         $totalQty = (float)$quote->getItemsQty();
@@ -259,13 +187,6 @@ class ConditionChecker
         return true;
     }
 
-    /**
-     * Validate product condition (product IDs or SKUs).
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isProductValid(FeeRule $rule, Quote $quote): bool
     {
         $productIds = $rule->getProductIdsArray();
@@ -288,13 +209,6 @@ class ConditionChecker
         return false;
     }
 
-    /**
-     * Validate category condition.
-     *
-     * @param FeeRule $rule
-     * @param Quote $quote
-     * @return bool
-     */
     private function isCategoryValid(FeeRule $rule, Quote $quote): bool
     {
         $categoryIds = $rule->getCategoryIdsArray();
@@ -316,12 +230,6 @@ class ConditionChecker
         return false;
     }
 
-    /**
-     * Parse a comma-separated string into a trimmed array.
-     *
-     * @param string|null $value
-     * @return array
-     */
     private function parseCommaSeparated(?string $value): array
     {
         if ($value === null || $value === '') {

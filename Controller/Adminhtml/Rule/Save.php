@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -16,9 +15,6 @@ class Save extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * Multi-select fields that need array-to-string conversion
-     */
     private const MULTI_SELECT_FIELDS = [
         'payment_methods',
         'customer_groups',
@@ -27,27 +23,12 @@ class Save extends Action implements HttpPostActionInterface
         'website_ids',
     ];
 
-    /**
-     * @var FeeRuleRepositoryInterface
-     */
     private FeeRuleRepositoryInterface $feeRuleRepository;
 
-    /**
-     * @var FeeRuleFactory
-     */
     private FeeRuleFactory $feeRuleFactory;
 
-    /**
-     * @var DataPersistorInterface
-     */
     private DataPersistorInterface $dataPersistor;
 
-    /**
-     * @param Context $context
-     * @param FeeRuleRepositoryInterface $feeRuleRepository
-     * @param FeeRuleFactory $feeRuleFactory
-     * @param DataPersistorInterface $dataPersistor
-     */
     public function __construct(
         Context $context,
         FeeRuleRepositoryInterface $feeRuleRepository,
@@ -60,11 +41,6 @@ class Save extends Action implements HttpPostActionInterface
         $this->dataPersistor = $dataPersistor;
     }
 
-    /**
-     * Save fee rule
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -111,12 +87,6 @@ class Save extends Action implements HttpPostActionInterface
         return $resultRedirect->setPath('*/*/new');
     }
 
-    /**
-     * Convert multi-select array values to comma-separated strings
-     *
-     * @param array $data
-     * @return array
-     */
     private function prepareMultiSelectData(array $data): array
     {
         foreach (self::MULTI_SELECT_FIELDS as $field) {

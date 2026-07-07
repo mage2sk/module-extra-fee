@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Ui\Component\Listing\Column;
@@ -11,18 +10,8 @@ use Magento\Ui\Component\Listing\Columns\Column;
 
 class RuleActions extends Column
 {
-    /**
-     * @var UrlInterface
-     */
     private UrlInterface $urlBuilder;
 
-    /**
-     * @param ContextInterface $context
-     * @param UiComponentFactory $uiComponentFactory
-     * @param UrlInterface $urlBuilder
-     * @param array $components
-     * @param array $data
-     */
     public function __construct(
         ContextInterface $context,
         UiComponentFactory $uiComponentFactory,
@@ -34,12 +23,6 @@ class RuleActions extends Column
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
-    /**
-     * Prepare Data Source
-     *
-     * @param array $dataSource
-     * @return array
-     */
     public function prepareDataSource(array $dataSource): array
     {
         if (isset($dataSource['data']['items'])) {

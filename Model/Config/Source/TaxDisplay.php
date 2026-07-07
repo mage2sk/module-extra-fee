@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Config\Source;
@@ -12,9 +11,6 @@ class TaxDisplay implements OptionSourceInterface
     public const INCLUDING_TAX = 2;
     public const BOTH = 3;
 
-    /**
-     * @inheritdoc
-     */
     public function toOptionArray(): array
     {
         return [

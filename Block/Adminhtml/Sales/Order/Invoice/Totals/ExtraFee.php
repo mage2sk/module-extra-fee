@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Block\Adminhtml\Sales\Order\Invoice\Totals;
@@ -10,27 +9,12 @@ use Magento\Framework\View\Element\Template\Context;
 use Panth\ExtraFee\Helper\Data as ExtraFeeHelper;
 use Panth\ExtraFee\Model\ResourceModel\OrderFee\CollectionFactory as OrderFeeCollectionFactory;
 
-/**
- * Admin invoice view extra fee totals block.
- */
 class ExtraFee extends Template
 {
-    /**
-     * @var ExtraFeeHelper
-     */
     private ExtraFeeHelper $helper;
 
-    /**
-     * @var OrderFeeCollectionFactory
-     */
     private OrderFeeCollectionFactory $orderFeeCollectionFactory;
 
-    /**
-     * @param Context $context
-     * @param ExtraFeeHelper $helper
-     * @param OrderFeeCollectionFactory $orderFeeCollectionFactory
-     * @param array $data
-     */
     public function __construct(
         Context $context,
         ExtraFeeHelper $helper,
@@ -42,11 +26,6 @@ class ExtraFee extends Template
         $this->orderFeeCollectionFactory = $orderFeeCollectionFactory;
     }
 
-    /**
-     * Initialize extra fee totals for the admin invoice view.
-     *
-     * @return $this
-     */
     public function initTotals(): self
     {
         if (!$this->helper->isEnabled()) {
@@ -87,14 +66,6 @@ class ExtraFee extends Template
         return $this;
     }
 
-    /**
-     * Add individual fee line totals to the parent block.
-     *
-     * @param \Magento\Framework\View\Element\AbstractBlock $parent
-     * @param \Panth\ExtraFee\Model\ResourceModel\OrderFee\Collection $collection
-     * @param int $taxDisplay
-     * @return void
-     */
     private function addBreakdownTotals($parent, $collection, int $taxDisplay): void
     {
         $index = 0;
@@ -144,14 +115,6 @@ class ExtraFee extends Template
         }
     }
 
-    /**
-     * Add a single aggregated total line to the parent block.
-     *
-     * @param \Magento\Framework\View\Element\AbstractBlock $parent
-     * @param \Panth\ExtraFee\Model\ResourceModel\OrderFee\Collection $collection
-     * @param int $taxDisplay
-     * @return void
-     */
     private function addAggregatedTotal($parent, $collection, int $taxDisplay): void
     {
         $totalFee = 0.0;

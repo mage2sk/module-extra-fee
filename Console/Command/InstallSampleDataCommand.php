@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Console\Command;
@@ -15,33 +14,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class InstallSampleDataCommand extends Command
 {
-    /**
-     * @var FeeRuleFactory
-     */
     private FeeRuleFactory $feeRuleFactory;
 
-    /**
-     * @var FeeRuleResource
-     */
     private FeeRuleResource $feeRuleResource;
 
-    /**
-     * @var FeeRuleCollectionFactory
-     */
     private FeeRuleCollectionFactory $collectionFactory;
 
-    /**
-     * @var State
-     */
     private State $state;
 
-    /**
-     * @param FeeRuleFactory $feeRuleFactory
-     * @param FeeRuleResource $feeRuleResource
-     * @param FeeRuleCollectionFactory $collectionFactory
-     * @param State $state
-     * @param string|null $name
-     */
     public function __construct(
         FeeRuleFactory $feeRuleFactory,
         FeeRuleResource $feeRuleResource,
@@ -56,9 +36,6 @@ class InstallSampleDataCommand extends Command
         parent::__construct($name);
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function configure(): void
     {
         $this->setName('panth:extrafee:install-sample-data');
@@ -66,15 +43,11 @@ class InstallSampleDataCommand extends Command
         parent::configure();
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
             $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
         } catch (LocalizedException $e) {
-            // Area code already set
         }
 
         $output->writeln('<info>Installing Panth ExtraFee sample data...</info>');
@@ -122,11 +95,6 @@ class InstallSampleDataCommand extends Command
         return Command::SUCCESS;
     }
 
-    /**
-     * Get existing rule names to avoid duplicates
-     *
-     * @return array
-     */
     private function getExistingRuleNames(): array
     {
         $collection = $this->collectionFactory->create();
@@ -137,11 +105,6 @@ class InstallSampleDataCommand extends Command
         return $names;
     }
 
-    /**
-     * Get sample rule data
-     *
-     * @return array[]
-     */
     private function getSampleRules(): array
     {
         return [

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Config\Source;
@@ -13,9 +12,6 @@ class FeeType implements OptionSourceInterface
     public const COMBINED = 'combined';
     public const FIXED_MINIMUM = 'fixed_minimum';
 
-    /**
-     * @inheritdoc
-     */
     public function toOptionArray(): array
     {
         return [

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\OrderFee;
@@ -15,21 +14,10 @@ class Export extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::view_order_fees';
 
-    /**
-     * @var ConvertToCsv
-     */
     private ConvertToCsv $convertToCsv;
 
-    /**
-     * @var FileFactory
-     */
     private FileFactory $fileFactory;
 
-    /**
-     * @param Context $context
-     * @param ConvertToCsv $convertToCsv
-     * @param FileFactory $fileFactory
-     */
     public function __construct(
         Context $context,
         ConvertToCsv $convertToCsv,
@@ -40,11 +28,6 @@ class Export extends Action implements HttpPostActionInterface
         $this->fileFactory = $fileFactory;
     }
 
-    /**
-     * Export order fees to CSV
-     *
-     * @return \Magento\Framework\App\ResponseInterface
-     */
     public function execute()
     {
         try {

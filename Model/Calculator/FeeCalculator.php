@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Calculator;
@@ -14,38 +13,16 @@ use Psr\Log\LoggerInterface;
 
 class FeeCalculator
 {
-    /**
-     * @var FeeRuleCollectionFactory
-     */
     private FeeRuleCollectionFactory $feeRuleCollectionFactory;
 
-    /**
-     * @var ConditionChecker
-     */
     private ConditionChecker $conditionChecker;
 
-    /**
-     * @var Helper
-     */
     private Helper $helper;
 
-    /**
-     * @var TaxCalculation
-     */
     private TaxCalculation $taxCalculation;
 
-    /**
-     * @var LoggerInterface
-     */
     private LoggerInterface $logger;
 
-    /**
-     * @param FeeRuleCollectionFactory $feeRuleCollectionFactory
-     * @param ConditionChecker $conditionChecker
-     * @param Helper $helper
-     * @param TaxCalculation $taxCalculation
-     * @param LoggerInterface $logger
-     */
     public function __construct(
         FeeRuleCollectionFactory $feeRuleCollectionFactory,
         ConditionChecker $conditionChecker,
@@ -60,12 +37,6 @@ class FeeCalculator
         $this->logger = $logger;
     }
 
-    /**
-     * Calculate all applicable fees for a quote.
-     *
-     * @param Quote $quote
-     * @return array
-     */
     public function calculateFees(Quote $quote): array
     {
         $storeId = (int)$quote->getStoreId();
@@ -81,7 +52,6 @@ class FeeCalculator
 
         $fees = [];
 
-        // Check small order fee first
         $smallOrderFee = $this->calculateSmallOrderFee($quote);
         if ($smallOrderFee !== null) {
             $fees[] = $smallOrderFee;
@@ -91,13 +61,10 @@ class FeeCalculator
             );
         }
 
-        // Load active fee rules ordered by sort_order
-        /** @var \Panth\ExtraFee\Model\ResourceModel\FeeRule\Collection $collection */
         $collection = $this->feeRuleCollectionFactory->create();
         $collection->addActiveFilter();
         $collection->setOrder('sort_order', 'ASC');
 
-        /** @var FeeRule $rule */
         foreach ($collection as $rule) {
             if (!$this->conditionChecker->isRuleValid($rule, $quote)) {
                 $this->debugLog(
@@ -109,10 +76,8 @@ class FeeCalculator
 
             $baseAmount = $this->calculateAmount($rule, $quote);
 
-            // Apply min/max fee constraints
             $baseAmount = $this->applyMinMaxConstraints($rule, $baseAmount);
 
-            // Skip zero amounts unless configured to show
             if ($baseAmount <= 0.0 && !$this->helper->isShowZeroFees($storeId)) {
                 $this->debugLog(
                     sprintf('Rule #%d "%s" resulted in zero fee, skipping', $rule->getRuleId(), $rule->getName()),
@@ -121,7 +86,6 @@ class FeeCalculator
                 continue;
             }
 
-            // Calculate tax
             $baseTax = 0.0;
             $taxClassId = (int)$rule->getTaxClassId();
             if ($taxClassId > 0 && $baseAmount > 0.0) {
@@ -149,7 +113,6 @@ class FeeCalculator
                 $storeId
             );
 
-            // Stop processing further rules if flag is set
             if ($rule->getStopFurtherRules()) {
                 $this->debugLog(
                     sprintf('Rule #%d has stop_further_rules, breaking', $rule->getRuleId()),
@@ -159,19 +122,11 @@ class FeeCalculator
             }
         }
 
-        // Apply global maximum fee cap
         $fees = $this->applyGlobalMaxCap($fees, $storeId);
 
         return $fees;
     }
 
-    /**
-     * Calculate the fee amount for a given rule and quote.
-     *
-     * @param FeeRuleInterface $rule
-     * @param Quote $quote
-     * @return float
-     */
     public function calculateAmount(FeeRuleInterface $rule, Quote $quote): float
     {
         $feeType = (string)$rule->getFeeType();
@@ -207,12 +162,6 @@ class FeeCalculator
         }
     }
 
-    /**
-     * Calculate small order fee if applicable.
-     *
-     * @param Quote $quote
-     * @return array|null
-     */
     public function calculateSmallOrderFee(Quote $quote): ?array
     {
         $storeId = (int)$quote->getStoreId();
@@ -256,14 +205,6 @@ class FeeCalculator
         ];
     }
 
-    /**
-     * Calculate tax amount for a fee using Magento tax calculation.
-     *
-     * @param float $feeAmount
-     * @param int $taxClassId
-     * @param Quote $quote
-     * @return float
-     */
     public function calculateTax(float $feeAmount, int $taxClassId, Quote $quote): float
     {
         if ($feeAmount <= 0.0 || $taxClassId <= 0) {
@@ -297,15 +238,6 @@ class FeeCalculator
         return 0.0;
     }
 
-    /**
-     * Calculate fixed amount based on apply_per setting.
-     *
-     * @param float $feeAmount
-     * @param string $applyPer
-     * @param FeeRuleInterface $rule
-     * @param Quote $quote
-     * @return float
-     */
     private function calculateFixedAmount(
         float $feeAmount,
         string $applyPer,
@@ -327,13 +259,6 @@ class FeeCalculator
         }
     }
 
-    /**
-     * Get the count of distinct quote items matching rule conditions.
-     *
-     * @param FeeRuleInterface $rule
-     * @param Quote $quote
-     * @return int
-     */
     private function getMatchingItemCount(FeeRuleInterface $rule, Quote $quote): int
     {
         $count = 0;
@@ -356,13 +281,6 @@ class FeeCalculator
         return $count;
     }
 
-    /**
-     * Get the total qty of quote items matching rule conditions.
-     *
-     * @param FeeRuleInterface $rule
-     * @param Quote $quote
-     * @return float
-     */
     private function getMatchingItemQty(FeeRuleInterface $rule, Quote $quote): float
     {
         $qty = 0.0;
@@ -385,15 +303,6 @@ class FeeCalculator
         return $qty;
     }
 
-    /**
-     * Check if a quote item matches product/sku/category conditions.
-     *
-     * @param \Magento\Quote\Model\Quote\Item $item
-     * @param array $productIds
-     * @param array $productSkus
-     * @param array $categoryIds
-     * @return bool
-     */
     private function isItemMatching($item, array $productIds, array $productSkus, array $categoryIds): bool
     {
         if (!empty($productIds) && in_array((string)$item->getProductId(), $productIds, true)) {
@@ -417,13 +326,6 @@ class FeeCalculator
         return false;
     }
 
-    /**
-     * Apply min/max fee constraints from the rule.
-     *
-     * @param FeeRuleInterface $rule
-     * @param float $amount
-     * @return float
-     */
     private function applyMinMaxConstraints(FeeRuleInterface $rule, float $amount): float
     {
         $minFee = $rule->getMinFeeAmount();
@@ -440,13 +342,6 @@ class FeeCalculator
         return $amount;
     }
 
-    /**
-     * Apply global maximum total fee cap if configured.
-     *
-     * @param array $fees
-     * @param int $storeId
-     * @return array
-     */
     private function applyGlobalMaxCap(array $fees, int $storeId): array
     {
         $maxTotalFee = $this->helper->getMaxTotalFee($storeId);
@@ -463,7 +358,6 @@ class FeeCalculator
             return $fees;
         }
 
-        // Scale all fees proportionally to fit within the cap
         $ratio = $maxTotalFee / $totalBaseAmount;
 
         $this->debugLog(
@@ -487,13 +381,6 @@ class FeeCalculator
         return $fees;
     }
 
-    /**
-     * Get the subtotal to use for percentage calculations.
-     *
-     * @param Quote $quote
-     * @param int $storeId
-     * @return float
-     */
     private function getSubtotal(Quote $quote, int $storeId): float
     {
         $shippingAddress = $quote->getShippingAddress();
@@ -513,12 +400,6 @@ class FeeCalculator
         return max($subtotal, 0.0);
     }
 
-    /**
-     * Parse a comma-separated string into a trimmed array.
-     *
-     * @param string|null $value
-     * @return array
-     */
     private function parseCommaSeparated(?string $value): array
     {
         if ($value === null || $value === '') {
@@ -530,13 +411,6 @@ class FeeCalculator
         }));
     }
 
-    /**
-     * Log debug message if debug mode is enabled.
-     *
-     * @param string $message
-     * @param int|null $storeId
-     * @return void
-     */
     private function debugLog(string $message, ?int $storeId = null): void
     {
         if ($this->helper->isDebugMode($storeId)) {

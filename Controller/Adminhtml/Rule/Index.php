@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -13,15 +12,8 @@ class Index extends Action implements HttpGetActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * @var PageFactory
-     */
     private PageFactory $resultPageFactory;
 
-    /**
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory
@@ -30,11 +22,6 @@ class Index extends Action implements HttpGetActionInterface
         $this->resultPageFactory = $resultPageFactory;
     }
 
-    /**
-     * Fee rules list page
-     *
-     * @return \Magento\Framework\View\Result\Page
-     */
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();

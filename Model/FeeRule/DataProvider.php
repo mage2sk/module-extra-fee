@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\FeeRule;
@@ -10,19 +9,10 @@ use Panth\ExtraFee\Model\ResourceModel\FeeRule\CollectionFactory;
 
 class DataProvider extends AbstractDataProvider
 {
-    /**
-     * @var DataPersistorInterface
-     */
     private DataPersistorInterface $dataPersistor;
 
-    /**
-     * @var array|null
-     */
     private ?array $loadedData = null;
 
-    /**
-     * Comma-separated fields that need to be converted to arrays for multiselect
-     */
     private const MULTI_VALUE_FIELDS = [
         'payment_methods',
         'customer_groups',
@@ -35,15 +25,6 @@ class DataProvider extends AbstractDataProvider
         'category_ids',
     ];
 
-    /**
-     * @param string $name
-     * @param string $primaryFieldName
-     * @param string $requestFieldName
-     * @param CollectionFactory $collectionFactory
-     * @param DataPersistorInterface $dataPersistor
-     * @param array $meta
-     * @param array $data
-     */
     public function __construct(
         string $name,
         string $primaryFieldName,
@@ -58,11 +39,6 @@ class DataProvider extends AbstractDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
 
-    /**
-     * Get data
-     *
-     * @return array
-     */
     public function getData(): array
     {
         if ($this->loadedData !== null) {
@@ -91,12 +67,6 @@ class DataProvider extends AbstractDataProvider
         return $this->loadedData;
     }
 
-    /**
-     * Convert comma-separated multi-value fields to arrays for multiselect form elements
-     *
-     * @param array $data
-     * @return array
-     */
     private function convertMultiValueFields(array $data): array
     {
         foreach (self::MULTI_VALUE_FIELDS as $field) {

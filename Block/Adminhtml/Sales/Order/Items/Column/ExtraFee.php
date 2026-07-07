@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Block\Adminhtml\Sales\Order\Items\Column;
@@ -17,9 +16,6 @@ class ExtraFee extends DefaultColumn
     private FeeRuleCollectionFactory $feeRuleCollectionFactory;
     private ResourceConnection $resourceConnection;
 
-    /**
-     * We override _construct instead of __construct to avoid complex parent constructor issues.
-     */
     protected function _construct(): void
     {
         parent::_construct();
@@ -28,9 +24,6 @@ class ExtraFee extends DefaultColumn
         $this->resourceConnection = $om->get(ResourceConnection::class);
     }
 
-    /**
-     * Calculate extra fee for this specific order item.
-     */
     public function getItemExtraFee(): float
     {
         $item = $this->getItem();
@@ -68,9 +61,6 @@ class ExtraFee extends DefaultColumn
         return $totalFee;
     }
 
-    /**
-     * Format the fee amount with order currency.
-     */
     public function getFormattedItemExtraFee(): string
     {
         $fee = $this->getItemExtraFee();

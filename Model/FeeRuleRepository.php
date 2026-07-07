@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model;
@@ -19,38 +18,16 @@ use Panth\ExtraFee\Model\ResourceModel\FeeRule\CollectionFactory;
 
 class FeeRuleRepository implements FeeRuleRepositoryInterface
 {
-    /**
-     * @var FeeRuleFactory
-     */
     private FeeRuleFactory $feeRuleFactory;
 
-    /**
-     * @var FeeRuleResource
-     */
     private FeeRuleResource $resource;
 
-    /**
-     * @var CollectionFactory
-     */
     private CollectionFactory $collectionFactory;
 
-    /**
-     * @var CollectionProcessorInterface
-     */
     private CollectionProcessorInterface $collectionProcessor;
 
-    /**
-     * @var SearchResultsInterfaceFactory
-     */
     private SearchResultsInterfaceFactory $searchResultsFactory;
 
-    /**
-     * @param FeeRuleFactory $feeRuleFactory
-     * @param FeeRuleResource $resource
-     * @param CollectionFactory $collectionFactory
-     * @param CollectionProcessorInterface $collectionProcessor
-     * @param SearchResultsInterfaceFactory $searchResultsFactory
-     */
     public function __construct(
         FeeRuleFactory $feeRuleFactory,
         FeeRuleResource $resource,
@@ -65,13 +42,9 @@ class FeeRuleRepository implements FeeRuleRepositoryInterface
         $this->searchResultsFactory = $searchResultsFactory;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function save(FeeRuleInterface $feeRule): FeeRuleInterface
     {
         try {
-            /** @var FeeRule $feeRule */
             $this->resource->save($feeRule);
         } catch (\Exception $exception) {
             throw new CouldNotSaveException(
@@ -83,9 +56,6 @@ class FeeRuleRepository implements FeeRuleRepositoryInterface
         return $feeRule;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getById(int $ruleId): FeeRuleInterface
     {
         $feeRule = $this->feeRuleFactory->create();
@@ -100,9 +70,6 @@ class FeeRuleRepository implements FeeRuleRepositoryInterface
         return $feeRule;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getList(SearchCriteriaInterface $searchCriteria): SearchResultsInterface
     {
         $collection = $this->collectionFactory->create();
@@ -116,13 +83,9 @@ class FeeRuleRepository implements FeeRuleRepositoryInterface
         return $searchResults;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function delete(FeeRuleInterface $feeRule): bool
     {
         try {
-            /** @var FeeRule $feeRule */
             $this->resource->delete($feeRule);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(
@@ -134,9 +97,6 @@ class FeeRuleRepository implements FeeRuleRepositoryInterface
         return true;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function deleteById(int $ruleId): bool
     {
         return $this->delete($this->getById($ruleId));

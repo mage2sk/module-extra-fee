@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Total\Quote;
@@ -51,7 +50,6 @@ class ExtraFee extends AbstractTotal
             $fees = $this->feeCalculator->calculateFees($quote);
             $quoteId = (int)$quote->getId();
 
-            // Only clear and re-save if we have fees OR if quote has existing fees to remove
             if (!empty($fees) && $quoteId > 0) {
                 $this->clearQuoteFees($quoteId);
                 foreach ($fees as $fee) {
@@ -66,7 +64,6 @@ class ExtraFee extends AbstractTotal
                 $baseTotalFeeAmount += $fee['base_amount'];
             }
 
-            // Add to grand total
             $total->addTotalAmount(self::TOTAL_CODE, $totalFeeAmount);
             $total->addBaseTotalAmount(self::TOTAL_CODE, $baseTotalFeeAmount);
         } catch (\Exception $e) {
@@ -84,7 +81,6 @@ class ExtraFee extends AbstractTotal
             return [];
         }
 
-        // Always read from database — works across different object instances
         $quoteId = (int)$quote->getId();
         if ($quoteId <= 0) {
             return [];
@@ -97,7 +93,6 @@ class ExtraFee extends AbstractTotal
             return [];
         }
 
-        // Return each fee as its own segment row
         $segments = [];
         foreach ($collection as $quoteFee) {
             $amount = (float)$quoteFee->getFeeAmount();

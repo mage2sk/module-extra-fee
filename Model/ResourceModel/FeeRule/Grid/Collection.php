@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\ResourceModel\FeeRule\Grid;
@@ -14,36 +13,12 @@ use Magento\Framework\Event\ManagerInterface;
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 use Psr\Log\LoggerInterface;
 
-/**
- * Grid collection for fee rules admin UI
- *
- * Note: When creating the UI component XML, use:
- * <argument name="storageConfig" xsi:type="array">
- *     <item name="indexField" xsi:type="string">rule_id</item>
- * </argument>
- */
 class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult implements SearchResultInterface
 {
-    /**
-     * @var string
-     */
     protected $_idFieldName = 'rule_id';
 
-    /**
-     * @var AggregationInterface
-     */
     protected $aggregations;
 
-    /**
-     * @param EntityFactoryInterface $entityFactory
-     * @param LoggerInterface $logger
-     * @param FetchStrategyInterface $fetchStrategy
-     * @param ManagerInterface $eventManager
-     * @param string $mainTable
-     * @param string $resourceModel
-     * @param AdapterInterface|null $connection
-     * @param AbstractDb|null $resource
-     */
     public function __construct(
         EntityFactoryInterface $entityFactory,
         LoggerInterface $logger,
@@ -66,9 +41,6 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
         );
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function _initSelect(): self
     {
         parent::_initSelect();
@@ -76,9 +48,6 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     protected function _afterLoad(): self
     {
         parent::_afterLoad();
@@ -88,58 +57,37 @@ class Collection extends \Magento\Framework\View\Element\UiComponent\DataProvide
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getAggregations(): AggregationInterface
     {
         return $this->aggregations;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function setAggregations($aggregations): self
     {
         $this->aggregations = $aggregations;
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getSearchCriteria(): ?SearchCriteriaInterface
     {
         return null;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null): self
     {
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getTotalCount(): int
     {
         return $this->getSize();
     }
 
-    /**
-     * @inheritdoc
-     */
     public function setTotalCount($totalCount): self
     {
         return $this;
     }
 
-    /**
-     * @inheritdoc
-     */
     public function setItems(?array $items = null): self
     {
         return $this;

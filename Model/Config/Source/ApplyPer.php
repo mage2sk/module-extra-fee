@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Config\Source;
@@ -12,9 +11,6 @@ class ApplyPer implements OptionSourceInterface
     public const PRODUCT = 'product';
     public const QUANTITY = 'quantity';
 
-    /**
-     * @inheritdoc
-     */
     public function toOptionArray(): array
     {
         return [

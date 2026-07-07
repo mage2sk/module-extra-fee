@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Total\Creditmemo;
@@ -13,27 +12,12 @@ use Psr\Log\LoggerInterface;
 
 class ExtraFee extends AbstractTotal
 {
-    /**
-     * @var OrderFeeResource
-     */
     private OrderFeeResource $orderFeeResource;
 
-    /**
-     * @var OrderFeeCollectionFactory
-     */
     private OrderFeeCollectionFactory $orderFeeCollectionFactory;
 
-    /**
-     * @var LoggerInterface
-     */
     private LoggerInterface $logger;
 
-    /**
-     * @param OrderFeeResource $orderFeeResource
-     * @param OrderFeeCollectionFactory $orderFeeCollectionFactory
-     * @param LoggerInterface $logger
-     * @param array $data
-     */
     public function __construct(
         OrderFeeResource $orderFeeResource,
         OrderFeeCollectionFactory $orderFeeCollectionFactory,
@@ -46,12 +30,6 @@ class ExtraFee extends AbstractTotal
         $this->logger = $logger;
     }
 
-    /**
-     * Collect extra fee totals for credit memo.
-     *
-     * @param Creditmemo $creditmemo
-     * @return $this
-     */
     public function collect(Creditmemo $creditmemo): self
     {
         parent::collect($creditmemo);
@@ -72,11 +50,7 @@ class ExtraFee extends AbstractTotal
             $totalTax = 0.0;
             $baseTotalTax = 0.0;
 
-            /** @var OrderFee $orderFee */
             foreach ($collection as $orderFee) {
-                // Only refund fees that are marked as refundable
-                // Check the linked rule's is_refundable flag via the order fee record
-                // The fee_type 'small_order' is always refundable
                 $feeType = (string)$orderFee->getFeeType();
                 if ($feeType !== 'small_order') {
                     $ruleId = (int)$orderFee->getRuleId();
@@ -94,7 +68,6 @@ class ExtraFee extends AbstractTotal
                 $baseTaxRefunded = (float)$orderFee->getBaseTaxRefunded();
                 $taxRefunded = (float)$orderFee->getTaxRefunded();
 
-                // Calculate remaining refundable amount (can only refund what was invoiced)
                 $baseRemainingFee = $baseFeeInvoiced - $baseFeeRefunded;
                 $remainingFee = $feeInvoiced - $feeRefunded;
 
@@ -102,7 +75,6 @@ class ExtraFee extends AbstractTotal
                     continue;
                 }
 
-                // Calculate remaining tax to refund
                 $baseRemainingTax = 0.0;
                 $remainingTax = 0.0;
                 if ($baseFeeInvoiced > 0.0) {
@@ -125,7 +97,6 @@ class ExtraFee extends AbstractTotal
                 $baseTotalTax += max($baseRemainingTax, 0.0);
                 $totalTax += max($remainingTax, 0.0);
 
-                // Update refunded amounts on the OrderFee record
                 $orderFee->setBaseFeeRefunded($baseFeeRefunded + $baseRemainingFee);
                 $orderFee->setFeeRefunded($feeRefunded + $remainingFee);
                 $orderFee->setBaseTaxRefunded($baseTaxRefunded + max($baseRemainingTax, 0.0));
@@ -151,27 +122,13 @@ class ExtraFee extends AbstractTotal
         return $this;
     }
 
-    /**
-     * Check if the fee's associated rule is refundable.
-     *
-     * The OrderFee record does not store is_refundable directly,
-     * so we look at the fee_type field. Rules that generate fees
-     * store is_refundable in the rule table. For credit memos we
-     * default to refundable (true) unless the order fee record
-     * explicitly has an is_refundable data field set to false.
-     *
-     * @param OrderFee $orderFee
-     * @return bool
-     */
     private function isRuleRefundable(OrderFee $orderFee): bool
     {
-        // If the OrderFee has an is_refundable data attribute, use it
         $isRefundable = $orderFee->getData('is_refundable');
         if ($isRefundable !== null) {
             return (bool)$isRefundable;
         }
 
-        // Default to refundable
         return true;
     }
 }

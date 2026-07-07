@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -14,15 +13,8 @@ class Delete extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * @var FeeRuleRepositoryInterface
-     */
     private FeeRuleRepositoryInterface $feeRuleRepository;
 
-    /**
-     * @param Context $context
-     * @param FeeRuleRepositoryInterface $feeRuleRepository
-     */
     public function __construct(
         Context $context,
         FeeRuleRepositoryInterface $feeRuleRepository
@@ -31,11 +23,6 @@ class Delete extends Action implements HttpPostActionInterface
         $this->feeRuleRepository = $feeRuleRepository;
     }
 
-    /**
-     * Delete fee rule
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();

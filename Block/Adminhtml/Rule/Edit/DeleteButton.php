@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Block\Adminhtml\Rule\Edit;
@@ -8,11 +7,6 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
-    /**
-     * Get button data
-     *
-     * @return array
-     */
     public function getButtonData(): array
     {
         if (!$this->getRuleId()) {
@@ -29,11 +23,6 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
         ];
     }
 
-    /**
-     * Get URL for delete button
-     *
-     * @return string
-     */
     private function getDeleteUrl(): string
     {
         return $this->getUrl('*/*/delete', ['rule_id' => $this->getRuleId()]);

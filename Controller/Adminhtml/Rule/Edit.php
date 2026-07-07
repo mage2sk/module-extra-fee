@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -14,21 +13,10 @@ class Edit extends Action implements HttpGetActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * @var PageFactory
-     */
     private PageFactory $resultPageFactory;
 
-    /**
-     * @var FeeRuleRepositoryInterface
-     */
     private FeeRuleRepositoryInterface $feeRuleRepository;
 
-    /**
-     * @param Context $context
-     * @param PageFactory $resultPageFactory
-     * @param FeeRuleRepositoryInterface $feeRuleRepository
-     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
@@ -39,11 +27,6 @@ class Edit extends Action implements HttpGetActionInterface
         $this->feeRuleRepository = $feeRuleRepository;
     }
 
-    /**
-     * Edit or create fee rule page
-     *
-     * @return \Magento\Framework\View\Result\Page|\Magento\Framework\Controller\Result\Redirect
-     */
     public function execute()
     {
         $ruleId = (int)$this->getRequest()->getParam('rule_id');

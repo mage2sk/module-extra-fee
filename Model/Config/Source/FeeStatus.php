@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Model\Config\Source;
@@ -11,9 +10,6 @@ class FeeStatus implements OptionSourceInterface
     public const ACTIVE = 1;
     public const INACTIVE = 0;
 
-    /**
-     * @inheritdoc
-     */
     public function toOptionArray(): array
     {
         return [

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Panth\ExtraFee\Controller\Adminhtml\Rule;
@@ -16,27 +15,12 @@ class MassDelete extends Action implements HttpPostActionInterface
 {
     const ADMIN_RESOURCE = 'Panth_ExtraFee::manage_rules';
 
-    /**
-     * @var Filter
-     */
     private Filter $filter;
 
-    /**
-     * @var CollectionFactory
-     */
     private CollectionFactory $collectionFactory;
 
-    /**
-     * @var FeeRuleRepositoryInterface
-     */
     private FeeRuleRepositoryInterface $feeRuleRepository;
 
-    /**
-     * @param Context $context
-     * @param Filter $filter
-     * @param CollectionFactory $collectionFactory
-     * @param FeeRuleRepositoryInterface $feeRuleRepository
-     */
     public function __construct(
         Context $context,
         Filter $filter,
@@ -49,11 +33,6 @@ class MassDelete extends Action implements HttpPostActionInterface
         $this->feeRuleRepository = $feeRuleRepository;
     }
 
-    /**
-     * Mass delete fee rules
-     *
-     * @return \Magento\Framework\Controller\Result\Redirect
-     */
     public function execute()
     {
         $resultRedirect = $this->resultRedirectFactory->create();
