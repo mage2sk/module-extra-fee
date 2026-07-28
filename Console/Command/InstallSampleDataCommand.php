@@ -186,7 +186,7 @@ class InstallSampleDataCommand extends Command
                 'apply_per' => 'order',
                 'is_active' => 0,
                 'sort_order' => 60,
-                'description' => 'Optional weekend processing fee ($7.50). Disabled by default — enable in admin when needed.',
+                'description' => 'Optional weekend processing fee ($7.50). Disabled by default - enable in admin when needed.',
             ],
             [
                 'name' => 'Order Insurance Fee',

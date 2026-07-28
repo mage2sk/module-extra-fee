@@ -7,7 +7,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Panth_ExtraFee::config" title="Panth Extra Fee — Configuration"
+                            <resource id="Panth_ExtraFee::config" title="Panth Extra Fee - Configuration"
                                       sortOrder="100"/>
                         </resource>
                     </resource>
