@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="panth_extra_fee" xsi:type="array">
+                                    <item name="component" xsi:type="string">Panth_ExtraFee/js/view/checkout/summary/extra-fee</item>
+                                    <item name="sortOrder" xsi:type="string">45</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="context" xsi:type="string">cart</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+            <block class="Panth\ExtraFee\Block\Cart\ExtraFeeTotals"
+                   name="panth_extra_fee"
+                   template="Panth_ExtraFee::cart/totals/extra-fee.phtml"/>
+        </referenceBlock>
+        <referenceContainer name="checkout.cart.totals.scripts">
+            <block class="Panth\ExtraFee\Block\Cart\ExtraFeeTotals"
+                   name="panth_extra_fee.totals.sort"
+                   template="Panth_ExtraFee::cart/totals/hyva-sort.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

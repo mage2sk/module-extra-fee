@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Order grid: extra fee column
+ *
+ * @category  Panth
+ * @package   Panth_ExtraFee
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="sales_order_columns">
+        <column name="panth_extra_fee"
+                class="Panth\ExtraFee\Ui\Component\Listing\Column\OrderExtraFee"
+                sortOrder="145">
+            <settings>
+                <label translate="true">Extra Fees</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+    </columns>
+</listing>

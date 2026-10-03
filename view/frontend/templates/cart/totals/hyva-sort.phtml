@@ -1,0 +1,35 @@
+<?php
+/** @var \Panth\ExtraFee\Block\Cart\ExtraFeeTotals $block */
+if (!$block->canShow()) {
+    return;
+}
+?>
+<script>
+    (function () {
+        'use strict';
+        var original = window.initCartTotals;
+        if (typeof original !== 'function' || original.panthExtraFeeSort) {
+            return;
+        }
+        var wrapped = function () {
+            var component = original.apply(this, arguments);
+            component.getSortedSegments = function () {
+                var sort = this.totalsSort || {};
+                var feeRank = sort.panth_extra_fee !== undefined ? Number(sort.panth_extra_fee) : 45;
+                var rank = function (segment) {
+                    var code = String(segment.code || '');
+                    if (code.indexOf('panth_extra_fee') === 0) {
+                        return feeRank;
+                    }
+                    return Number(sort[code] || 0);
+                };
+                return Array.from(this.totalsData.total_segments || []).sort(function (a, b) {
+                    return rank(a) - rank(b);
+                });
+            };
+            return component;
+        };
+        wrapped.panthExtraFeeSort = true;
+        window.initCartTotals = wrapped;
+    })();
+</script>
