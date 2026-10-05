@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_type_multishipping_create_orders_single">
+        <observer name="panth_extra_fee_mark_multishipping_order" instance="Panth\ExtraFee\Observer\MarkMultishippingOrder"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="panth_extra_fee_save_order_fees" instance="Panth\ExtraFee\Observer\SaveOrderFees"/>
+    </event>
+</config>

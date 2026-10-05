@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Interface preferences -->
+    <preference for="Panth\ExtraFee\Api\Data\FeeRuleInterface"
+                type="Panth\ExtraFee\Model\FeeRule"/>
+    <preference for="Panth\ExtraFee\Api\FeeRuleRepositoryInterface"
+                type="Panth\ExtraFee\Model\FeeRuleRepository"/>
+
+    <!-- Register with Panth Core ThemeConfig -->
+    <type name="Panth\Core\ViewModel\ThemeConfig">
+        <arguments>
+            <argument name="registeredModules" xsi:type="array">
+                <item name="Panth_ExtraFee" xsi:type="string">Panth_ExtraFee</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- CLI Commands -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="panth_extrafee_install_sample_data" xsi:type="object">Panth\ExtraFee\Console\Command\InstallSampleDataCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Logger -->
+    <type name="Panth\ExtraFee\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Panth\ExtraFee\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">panth_extra_fee</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Panth\ExtraFee\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Grid Collections -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="panth_extra_fee_rule_listing_data_source" xsi:type="string">Panth\ExtraFee\Model\ResourceModel\FeeRule\Grid\Collection</item>
+                <item name="panth_extra_fee_order_listing_data_source" xsi:type="string">Panth\ExtraFee\Model\ResourceModel\OrderFee\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Panth\ExtraFee\Ui\FeeRuleGridFulltextFilter" type="Panth\ExtraFee\Ui\Component\Listing\LikeFulltextFilter">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="name" xsi:type="string">main_table.name</item>
+                <item name="fee_label" xsi:type="string">main_table.fee_label</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\FeeRuleGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Panth\ExtraFee\Ui\FeeRuleGridFulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\FeeRuleGridReporting" type="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <arguments>
+            <argument name="filterPool" xsi:type="object">Panth\ExtraFee\Ui\FeeRuleGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\FeeRuleGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="reporting" xsi:type="object">Panth\ExtraFee\Ui\FeeRuleGridReporting</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Panth\ExtraFee\Ui\OrderFeeGridFulltextFilter" type="Panth\ExtraFee\Ui\Component\Listing\LikeFulltextFilter">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="fee_label" xsi:type="string">main_table.fee_label</item>
+                <item name="fee_type" xsi:type="string">main_table.fee_type</item>
+                <item name="order_id" xsi:type="string">main_table.order_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\OrderFeeGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Panth\ExtraFee\Ui\OrderFeeGridFulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\OrderFeeGridReporting" type="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <arguments>
+            <argument name="filterPool" xsi:type="object">Panth\ExtraFee\Ui\OrderFeeGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Panth\ExtraFee\Ui\OrderFeeGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="reporting" xsi:type="object">Panth\ExtraFee\Ui\OrderFeeGridReporting</argument>
+        </arguments>
+    </virtualType>
+</config>

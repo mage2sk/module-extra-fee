@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Sales:etc/pdf_file.xsd">
+    <totals>
+        <total name="panth_extra_fee">
+            <title translate="true">Additional Fees</title>
+            <source_field>panth_extra_fee_amount</source_field>
+            <model>Panth\ExtraFee\Model\Pdf\Total\ExtraFee</model>
+            <font_size>7</font_size>
+            <display_zero>false</display_zero>
+            <sort_order>650</sort_order>
+        </total>
+    </totals>
+</config>

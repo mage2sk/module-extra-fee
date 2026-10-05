@@ -1,0 +1,14 @@
+.edit-order-table:has(th.col-panth-extra-fee) > thead > tr > th,
+.edit-order-table:has(th.col-panth-extra-fee) > tbody > tr > td {
+    padding-left: 8px;
+}
+.edit-order-table td.col-panth-extra-fee {
+    white-space: nowrap;
+}
+.edit-order-table .panth-extra-fee-amount {
+    font-weight: 600;
+    color: #303030;
+}
+.edit-order-table .panth-extra-fee-none {
+    color: #6b6b6b;
+}

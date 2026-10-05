@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Admin invoice view layout: extra fee totals
+ *
+ * @category  Panth
+ * @package   Panth_ExtraFee
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="invoice_totals">
+            <block class="Panth\ExtraFee\Block\Adminhtml\Sales\Order\Invoice\Totals\ExtraFee"
+                   name="panth.extra.fee.admin.invoice.totals"/>
+        </referenceBlock>
+    </body>
+</page>
